@@ -111,19 +111,34 @@ app.get('/api/bootstrap', (_req, res) => {
   res.json(db);
 });
 
-// 2. NIP Login / Pegawai Lookup (FR-01)
+// 2. NIP & Password Login / Pegawai Lookup (FR-01)
+const DEFAULT_USER_PASSWORD = process.env.SITNDE_DEFAULT_PASSWORD || '123456';
+
 app.post('/api/auth/login-nip', (req, res) => {
   const nipInput = String(req.body?.nip || '').replace(/\s+/g, '');
+  const passwordInput = String(req.body?.password || '');
+
   if (!nipInput) {
     res.status(400).json({ error: 'Masukkan NIP pegawai terlebih dahulu.' });
     return;
   }
+  if (!passwordInput) {
+    res.status(400).json({ error: 'Masukkan kata sandi terlebih dahulu.' });
+    return;
+  }
+
   const matchedUser = ROLE_USERS.find(
     (u) => u.nip.replace(/\s+/g, '') === nipInput
   );
   if (!matchedUser) {
     res.status(404).json({
       error: `NIP ${req.body?.nip} tidak ditemukan pada database kepegawaian SIMRS RSUD Nusantara Jaya.`,
+    });
+    return;
+  }
+  if (passwordInput !== DEFAULT_USER_PASSWORD) {
+    res.status(401).json({
+      error: 'Kata sandi tidak sesuai. Gunakan kata sandi default 123456.',
     });
     return;
   }

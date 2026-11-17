@@ -5,8 +5,8 @@ import { BiromaticGuardView } from './components/BiromaticGuardView';
 import { DashboardView } from './components/DashboardView';
 import { DynFlowView } from './components/DynFlowView';
 import { IntentToDraftView } from './components/IntentToDraftView';
+import { LoginPage } from './components/LoginPage';
 import { ManagementBriefView } from './components/ManagementBriefView';
-import { NipLoginModal } from './components/NipLoginModal';
 import { Sidebar } from './components/Sidebar';
 import { TemplatesView } from './components/TemplatesView';
 import { TopBar } from './components/TopBar';
@@ -37,7 +37,7 @@ import {
 } from './utils/sitndeEngine';
 
 function SitndeWorkspace() {
-  const { currentUser } = useRole();
+  const { isAuthenticated, currentUser } = useRole();
   const [activeSection, setActiveSection] = useState<NavSection>('dashboard');
   const [drafts, setDrafts] = useState<LetterDraft[]>(INITIAL_DRAFTS);
   const [sotkRules, setSotkRules] =
@@ -51,9 +51,9 @@ function SitndeWorkspace() {
     INITIAL_DRAFTS[0].id
   );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   useEffect(() => {
+    if (!isAuthenticated) return;
     let active = true;
     fetch('/api/bootstrap')
       .then((res) => {
@@ -81,7 +81,7 @@ function SitndeWorkspace() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [isAuthenticated]);
 
   const activeDraft = useMemo(
     () => drafts.find((d) => d.id === activeDraftId) || drafts[0],
@@ -272,6 +272,17 @@ function SitndeWorkspace() {
     }
   };
 
+  if (!isAuthenticated) {
+    return (
+      <LoginPage
+        onLoggedIn={(roleId) => {
+          setActiveSection('dashboard');
+          handleRoleChanged(roleId);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="flex min-h-screen bg-slate-50 text-slate-900">
       <Sidebar
@@ -282,7 +293,6 @@ function SitndeWorkspace() {
         pendingQueueCount={pendingQueueCount}
         mobileOpen={mobileMenuOpen}
         onCloseMobile={() => setMobileMenuOpen(false)}
-        onOpenLoginModal={() => setLoginModalOpen(true)}
       />
 
       <div className="flex min-w-0 flex-1 flex-col">
@@ -386,12 +396,6 @@ function SitndeWorkspace() {
           )}
         </main>
       </div>
-
-      <NipLoginModal
-        open={loginModalOpen}
-        onClose={() => setLoginModalOpen(false)}
-        onLoggedIn={handleRoleChanged}
-      />
     </div>
   );
 }

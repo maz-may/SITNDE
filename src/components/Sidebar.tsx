@@ -5,8 +5,8 @@ import {
   FilePlus2,
   FileText,
   GitBranch,
-  KeyRound,
   LayoutDashboard,
+  LogOut,
   Settings2,
   ShieldCheck,
   X,
@@ -22,7 +22,6 @@ interface SidebarProps {
   pendingQueueCount: number;
   mobileOpen: boolean;
   onCloseMobile: () => void;
-  onOpenLoginModal: () => void;
 }
 
 function getFlowLabelForRole(roleId: RoleId): string {
@@ -49,9 +48,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   pendingQueueCount,
   mobileOpen,
   onCloseMobile,
-  onOpenLoginModal,
 }) => {
-  const { currentUser, canAccessNav } = useRole();
+  const { currentUser, canAccessNav, logout } = useRole();
 
   const navItems: {
     id: NavSection;
@@ -166,7 +164,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         })}
       </nav>
 
-      {/* Active RBAC Employee Identity + NIP Login Action */}
+      {/* Active RBAC Employee Identity + Logout Action */}
       <div className="border-t border-white/10 px-5 py-4">
         <div className="text-[11px] font-semibold tracking-wide text-sky-300 uppercase">
           {currentUser.shortRoleLabel}
@@ -182,11 +180,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
         <button
           type="button"
-          onClick={onOpenLoginModal}
-          className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+          onClick={() => {
+            onCloseMobile();
+            logout();
+          }}
+          className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-red-400/30 bg-red-500/15 px-3 py-1.5 text-xs font-medium text-red-100 hover:bg-red-500/25 transition-colors"
         >
-          <KeyRound className="h-3.5 w-3.5 text-sky-300" />
-          <span>Login NIP Pegawai</span>
+          <LogOut className="h-3.5 w-3.5 text-red-300" />
+          <span>Logout</span>
         </button>
       </div>
     </div>

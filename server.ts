@@ -138,7 +138,7 @@ app.post('/api/auth/login-nip', (req, res) => {
   }
   if (passwordInput !== DEFAULT_USER_PASSWORD) {
     res.status(401).json({
-      error: 'Kata sandi tidak sesuai. Gunakan kata sandi default 123456.',
+      error: 'Kata sandi yang Anda masukkan salah. Silakan coba kembali.',
     });
     return;
   }

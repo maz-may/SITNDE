@@ -21,7 +21,7 @@ interface LoginPageProps {
 export const LoginPage: React.FC<LoginPageProps> = ({ onLoggedIn }) => {
   const { allRoleUsers, loginWithCredentials } = useRole();
   const [nip, setNip] = useState(allRoleUsers[0]?.nip || '');
-  const [password, setPassword] = useState('123456');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -47,9 +47,6 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoggedIn }) => {
 
   const handleQuickFill = (selectedNip: string) => {
     setNip(selectedNip);
-    if (!password) {
-      setPassword('123456');
-    }
     setErrorMessage(null);
   };
 
@@ -158,11 +155,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoggedIn }) => {
                 Masuk ke Ruang Kerja SITNDE
               </h2>
               <p className="mt-1 text-xs text-slate-600">
-                Gunakan NIP 18 digit Anda yang terdaftar pada SIMRS RSUD Nusantara Jaya beserta kata sandi (default:{' '}
-                <span className="font-mono font-semibold text-slate-900">
-                  123456
-                </span>
-                ).
+                Masukkan NIP 18 digit yang terdaftar pada SIMRS RSUD Nusantara Jaya beserta kata sandi Anda.
               </p>
             </div>
 
@@ -190,17 +183,12 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoggedIn }) => {
               </div>
 
               <div>
-                <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="login-password"
-                    className="block text-xs font-semibold text-slate-700"
-                  >
-                    Kata Sandi
-                  </label>
-                  <span className="text-[11px] text-slate-500">
-                    Default: <span className="font-mono font-medium">123456</span>
-                  </span>
-                </div>
+                <label
+                  htmlFor="login-password"
+                  className="block text-xs font-semibold text-slate-700"
+                >
+                  Kata Sandi
+                </label>
                 <div className="relative mt-1.5">
                   <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                   <input

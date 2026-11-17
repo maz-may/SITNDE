@@ -1,0 +1,6 @@
+{
+  "name": "SITNDE — Smart Intent-to-Draft & TND Engine",
+  "description": "Sistem Persuratan Cerdas Rumah Sakit Pemerintah untuk pembuatan naskah dinas berbasis intent, validasi EYD V & NIP/Gelar (Biromatic Guard), dan simulasi paraf berjenjang SOTK.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

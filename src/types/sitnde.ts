@@ -5,6 +5,7 @@ export type NavSection =
   | 'guard'
   | 'flow'
   | 'archive'
+  | 'reports'
   | 'admin';
 
 export type RoleId =
@@ -30,6 +31,7 @@ export type PermissionCode =
   | 'view:templates'
   | 'view:approval_queue'
   | 'view:archive'
+  | 'view:reports'
   | 'system:manage_sotk_tnd';
 
 export interface RoleUserProfile {
@@ -71,6 +73,8 @@ export type ParafStepStatus =
   | 'revision'
   | 'rejected';
 
+export type OfficialDutyStatus = 'Definitif' | 'Cuti (Plt.)' | 'Dinas Luar (Plh.)';
+
 export interface OfficialProfile {
   id: string;
   name: string;
@@ -80,6 +84,28 @@ export interface OfficialProfile {
   position: string;
   unitName: string;
   sotkLevel: 1 | 2 | 3 | 4 | 5;
+  dutyStatus?: OfficialDutyStatus;
+  delegateName?: string;
+  delegateNip?: string;
+}
+
+export interface ArchiveClassification {
+  code: string;
+  category: string;
+  description: string;
+}
+
+export interface PrecedentDoc {
+  id: string;
+  letterNumber: string;
+  letterType: LetterType;
+  classificationCode: string;
+  unitName: string;
+  title: string;
+  keywords: string[];
+  excerptParagraph: string;
+  legalBasis?: string;
+  year: string;
 }
 
 export interface ParafStep {
@@ -89,6 +115,7 @@ export interface ParafStep {
   unitName: string;
   officialName: string;
   officialNip: string;
+  isPltOrPlh?: string;
   status: ParafStepStatus;
   timestamp?: string;
   note?: string;
@@ -132,6 +159,7 @@ export interface ExtractedIntentPayload {
   hariTanggal?: string;
   waktu?: string;
   tempat?: string;
+  generationEngine?: 'gemini-4-hydrogen' | 'local-rule-engine';
 }
 
 export interface ValidationIssue {

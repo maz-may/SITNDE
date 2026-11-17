@@ -8,13 +8,14 @@ import {
   GitBranch,
   Hash,
   History,
+  Loader2,
   Lock,
   Send,
   XCircle,
 } from 'lucide-react';
 import { useRole } from '../context/RoleContext';
 import { LetterDraft, RoleId } from '../types/sitnde';
-import { transitionDraftWorkflow } from '../utils/sitndeEngine';
+import { apiTransitionWorkflow } from '../utils/sitndeEngine';
 import { renderStatusLabel } from './DashboardView';
 import { OfficialLetterPaper } from './OfficialLetterPaper';
 import { PermissionGuard } from './PermissionGuard';
@@ -59,6 +60,8 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
   const [queueTab, setQueueTab] = useState<'pending' | 'all'>('pending');
   const [dispositionNote, setDispositionNote] = useState('');
   const [actionToast, setActionToast] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [showLetterPreview, setShowLetterPreview] = useState(false);
 
   const pendingQueue = drafts.filter((d) =>
@@ -71,21 +74,34 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
     activeDraft
   );
 
-  const handleAction = (
+  const handleAction = async (
     actionType: 'submit' | 'approve' | 'revise' | 'reject' | 'assign_number'
   ) => {
-    const updated = transitionDraftWorkflow(
-      activeDraft,
-      actionType,
-      currentUser,
-      dispositionNote
-    );
-    onUpdateDraft(updated);
-    setDispositionNote('');
-    setActionToast(
-      `Status diperbarui menjadi "${updated.status}" oleh ${currentUser.shortRoleLabel}.`
-    );
-    setTimeout(() => setActionToast(null), 4000);
+    if (isProcessing) return;
+    setIsProcessing(true);
+    setActionError(null);
+    try {
+      const updated = await apiTransitionWorkflow(
+        activeDraft.id,
+        actionType,
+        currentUser,
+        dispositionNote
+      );
+      onUpdateDraft(updated);
+      setDispositionNote('');
+      setActionToast(
+        `Status diperbarui menjadi "${updated.status}" oleh ${currentUser.shortRoleLabel} dan tersimpan pada Audit Trail server.`
+      );
+      setTimeout(() => setActionToast(null), 4000);
+    } catch (err: unknown) {
+      setActionError(
+        err instanceof Error
+          ? err.message
+          : 'Gagal memperbarui status alur paraf.'
+      );
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const flow = activeDraft.parafFlow;
@@ -197,6 +213,13 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
         </div>
       )}
 
+      {actionError && (
+        <div className="flex items-center gap-2.5 rounded-xl border border-red-300 bg-red-50 px-5 py-3 text-xs font-semibold text-red-900">
+          <XCircle className="h-4 w-4 shrink-0 text-red-700" />
+          <span>{actionError}</span>
+        </div>
+      )}
+
       {/* 6-Stage Progress Stepper */}
       <section className="rounded-xl border border-slate-200 bg-white p-6">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
@@ -278,6 +301,11 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
 
                   <div className="mt-2.5 font-display text-xs font-bold text-[#0F294A]">
                     {step.roleLabel}
+                    {step.isPltOrPlh && (
+                      <span className="ml-1 font-sans text-[11px] font-semibold text-amber-700">
+                        ({step.isPltOrPlh})
+                      </span>
+                    )}
                   </div>
                   <div className="mt-0.5 text-[11px] text-slate-600 line-clamp-1">
                     {step.unitName}
@@ -347,7 +375,7 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
                 Panel Eksekusi Kewenangan: {currentUser.roleLabel}
               </h4>
               <p className="mt-0.5 text-xs text-slate-600">
-                Tindakan Anda akan tercatat secara permanen pada Audit Trail dengan identitas{' '}
+                Tindakan Anda divalidasi oleh server dan tercatat permanen pada Audit Trail dengan identitas{' '}
                 <span className="font-semibold">{currentUser.name}</span> (NIP{' '}
                 <span className="font-mono">{currentUser.nip}</span>).
               </p>
@@ -371,10 +399,15 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
               <PermissionGuard allowedRoles={['staf']}>
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={() => handleAction('submit')}
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#0F294A] px-4 py-2.5 text-xs font-semibold text-white hover:bg-[#163a66]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#0F294A] px-4 py-2.5 text-xs font-semibold text-white hover:bg-[#163a66] disabled:opacity-60"
                 >
-                  <Send className="h-4 w-4" />
+                  {isProcessing ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
                   <span>Ajukan ke Instalasi</span>
                 </button>
               </PermissionGuard>
@@ -385,10 +418,15 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
               >
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={() => handleAction('approve')}
-                  className="inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2.5 text-xs font-semibold text-white hover:bg-emerald-800"
+                  className="inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2.5 text-xs font-semibold text-white hover:bg-emerald-800 disabled:opacity-60"
                 >
-                  <CheckCircle2 className="h-4 w-4" />
+                  {isProcessing ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <CheckCircle2 className="h-4 w-4" />
+                  )}
                   <span>
                     {currentUser.roleId === 'ka_instalasi'
                       ? 'Setujui & Paraf Teknis'
@@ -403,10 +441,15 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
               <PermissionGuard permission="document:sign_tte">
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={() => handleAction('approve')}
-                  className="inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2.5 text-xs font-semibold text-white hover:bg-emerald-800"
+                  className="inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2.5 text-xs font-semibold text-white hover:bg-emerald-800 disabled:opacity-60"
                 >
-                  <FileSignature className="h-4 w-4" />
+                  {isProcessing ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <FileSignature className="h-4 w-4" />
+                  )}
                   <span>Tanda Tangan Elektronik (TTE)</span>
                 </button>
               </PermissionGuard>
@@ -417,16 +460,18 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
               >
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={() => handleAction('revise')}
-                  className="inline-flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-50 px-4 py-2.5 text-xs font-semibold text-amber-900 hover:bg-amber-100"
+                  className="inline-flex items-center gap-2 rounded-lg border border-amber-300 bg-amber-50 px-4 py-2.5 text-xs font-semibold text-amber-900 hover:bg-amber-100 disabled:opacity-60"
                 >
                   <AlertTriangle className="h-4 w-4" />
                   <span>Revisi</span>
                 </button>
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={() => handleAction('reject')}
-                  className="inline-flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2.5 text-xs font-semibold text-red-800 hover:bg-red-100"
+                  className="inline-flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2.5 text-xs font-semibold text-red-800 hover:bg-red-100 disabled:opacity-60"
                 >
                   <XCircle className="h-4 w-4" />
                   <span>Tolak</span>
@@ -437,10 +482,15 @@ export const DynFlowView: React.FC<DynFlowViewProps> = ({
               <PermissionGuard permission="document:assign_number">
                 <button
                   type="button"
+                  disabled={isProcessing}
                   onClick={() => handleAction('assign_number')}
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#0F294A] px-4 py-2.5 text-xs font-semibold text-white hover:bg-[#163a66]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#0F294A] px-4 py-2.5 text-xs font-semibold text-white hover:bg-[#163a66] disabled:opacity-60"
                 >
-                  <Hash className="h-4 w-4" />
+                  {isProcessing ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Hash className="h-4 w-4" />
+                  )}
                   <span>Generate Nomor Surat Resmi & Arsip Otomatis</span>
                 </button>
               </PermissionGuard>

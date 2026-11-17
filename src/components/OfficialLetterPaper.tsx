@@ -7,6 +7,7 @@ interface OfficialLetterPaperProps {
   editable?: boolean;
   onUpdateDraft?: (updated: LetterDraft) => void;
   highlightIssues?: ValidationIssue[];
+  fontMode?: 'sans' | 'serif';
 }
 
 function renderHighlightedText(text: string, issues: ValidationIssue[] = []) {
@@ -48,6 +49,7 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
   editable = false,
   onUpdateDraft,
   highlightIssues = [],
+  fontMode = 'sans',
 }) => {
   const handleParagraphChange = (index: number, value: string) => {
     if (!onUpdateDraft) return;
@@ -68,16 +70,21 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
     (i) => !i.fixed && i.field === 'signerName'
   );
 
+  const fontStyle =
+    fontMode === 'serif'
+      ? '"Source Serif 4", Georgia, serif'
+      : '"Public Sans", Arial, sans-serif';
+
   return (
     <div
       id="tnd-printable-paper"
-      className="mx-auto w-full max-w-[780px] rounded-sm border border-slate-300 bg-white px-8 py-9 text-slate-900 shadow-sm sm:px-12 sm:py-11"
-      style={{ fontFamily: 'Public Sans, Arial, sans-serif' }}
+      className="mx-auto w-full max-w-[780px] rounded-sm border border-slate-300 bg-white px-7 py-8 text-slate-900 shadow-sm sm:px-11 sm:py-10"
+      style={{ fontFamily: fontStyle }}
     >
       {/* Kop Surat Resmi Instansi Pemerintah / RSUD */}
       <div className="flex items-center gap-4 border-b-[3px] border-double border-slate-900 pb-4">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center text-slate-900">
-          <svg viewBox="0 0 64 64" fill="none" className="h-15 w-15">
+        <div className="flex h-15 w-15 shrink-0 items-center justify-center text-slate-900">
+          <svg viewBox="0 0 64 64" fill="none" className="h-14 w-14">
             <path
               d="M32 6L52 14V30C52 43 43.5 53.5 32 58C20.5 53.5 12 43 12 30V14L32 6Z"
               stroke="currentColor"
@@ -101,19 +108,19 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
           </svg>
         </div>
         <div className="flex-1 text-center leading-tight">
-          <div className="text-xs font-bold tracking-wider text-slate-800 uppercase">
+          <div className="text-[11px] font-bold tracking-wider text-slate-800 uppercase">
             {HOSPITAL_INFO.pemda}
           </div>
-          <div className="text-xs font-bold tracking-wider text-slate-800 uppercase">
+          <div className="text-[11px] font-bold tracking-wider text-slate-800 uppercase">
             {HOSPITAL_INFO.dinas}
           </div>
-          <div className="mt-0.5 text-base font-bold tracking-wide text-slate-950 uppercase sm:text-lg">
+          <div className="mt-0.5 text-sm font-bold tracking-wide text-slate-950 uppercase sm:text-base">
             {HOSPITAL_INFO.name}
           </div>
-          <div className="mt-1 text-[11px] text-slate-700">
+          <div className="mt-1 text-[10.5px] text-slate-700">
             {HOSPITAL_INFO.address}
           </div>
-          <div className="text-[10.5px] text-slate-600">
+          <div className="text-[10px] text-slate-600">
             {HOSPITAL_INFO.contact}
           </div>
         </div>
@@ -126,7 +133,7 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
             NOTA DINAS
           </div>
 
-          <div className="mt-4 grid grid-cols-[100px_12px_1fr] gap-y-1.5 border-b border-slate-800 pb-3 text-[13px]">
+          <div className="mt-4 grid grid-cols-[95px_12px_1fr] gap-y-1.5 border-b border-slate-800 pb-3 text-[12.5px]">
             <span className="font-medium">Kepada Yth.</span>
             <span>:</span>
             {editable && onUpdateDraft ? (
@@ -136,7 +143,7 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
                 onChange={(e) =>
                   onUpdateDraft({ ...draft, recipient: e.target.value })
                 }
-                className="w-full rounded border border-transparent bg-slate-50/70 px-1.5 py-0.5 text-[13px] focus:border-sky-400 focus:bg-white focus:outline-none"
+                className="w-full rounded border border-transparent bg-slate-50/70 px-1.5 py-0.5 text-[12.5px] focus:border-sky-400 focus:bg-white focus:outline-none"
               />
             ) : (
               <span>{draft.recipient}</span>
@@ -173,7 +180,7 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
                 onChange={(e) =>
                   onUpdateDraft({ ...draft, subject: e.target.value })
                 }
-                className="w-full rounded border border-transparent bg-slate-50/70 px-1.5 py-0.5 text-[13px] font-semibold focus:border-sky-400 focus:bg-white focus:outline-none"
+                className="w-full rounded border border-transparent bg-slate-50/70 px-1.5 py-0.5 text-[12.5px] font-semibold focus:border-sky-400 focus:bg-white focus:outline-none"
               />
             ) : (
               <span className="font-semibold">{draft.subject}</span>
@@ -191,12 +198,12 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
               NOMOR: {draft.letterNumber}
             </div>
             {draft.letterType === 'Surat Edaran' && (
-              <div className="mt-2 text-[13px] font-semibold uppercase">
+              <div className="mt-2 text-[12.5px] font-semibold uppercase">
                 TENTANG: {draft.subject}
               </div>
             )}
           </div>
-          <div className="mt-4 border-b border-slate-300 pb-2 text-[13px]">
+          <div className="mt-4 border-b border-slate-300 pb-2 text-[12.5px]">
             <span className="font-semibold">Hal: </span>
             <span>{draft.subject}</span>
           </div>
@@ -204,7 +211,7 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
       ) : (
         <div className="mt-5">
           <div className="flex flex-col justify-between gap-3 sm:flex-row">
-            <div className="grid grid-cols-[80px_12px_1fr] gap-y-1 text-[13px]">
+            <div className="grid grid-cols-[75px_12px_1fr] gap-y-1 text-[12.5px]">
               <span>Nomor</span>
               <span>:</span>
               <span className="font-mono text-xs tabular-nums">
@@ -220,12 +227,12 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
               <span>:</span>
               <span className="font-semibold">{draft.subject}</span>
             </div>
-            <div className="text-right text-[13px]">
+            <div className="text-right text-[12.5px]">
               {HOSPITAL_INFO.city}, {draft.dateStr}
             </div>
           </div>
 
-          <div className="mt-5 text-[13px] leading-relaxed">
+          <div className="mt-5 text-[12.5px] leading-relaxed">
             <div>Kepada Yth.</div>
             <div className="font-medium">{draft.recipient}</div>
             <div>di Tempat</div>
@@ -234,15 +241,15 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
       )}
 
       {/* Isi Naskah Dinas */}
-      <div className="mt-5 space-y-3.5 text-[13.5px] leading-relaxed text-slate-900">
+      <div className="mt-5 space-y-3 text-[13px] leading-relaxed text-slate-900">
         {draft.bodyParagraphs.map((paragraph, index) => (
           <React.Fragment key={index}>
             {editable && onUpdateDraft ? (
               <textarea
                 value={paragraph}
                 onChange={(e) => handleParagraphChange(index, e.target.value)}
-                rows={Math.max(2, Math.ceil(paragraph.length / 82))}
-                className="w-full resize-none rounded border border-slate-200 bg-slate-50/50 p-2 text-[13.5px] leading-relaxed text-slate-900 focus:border-sky-500 focus:bg-white focus:outline-none"
+                rows={Math.max(2, Math.ceil(paragraph.length / 72))}
+                className="w-full resize-none rounded border border-slate-200 bg-slate-50/50 p-2 text-[13px] leading-relaxed text-slate-900 focus:border-sky-500 focus:bg-white focus:outline-none"
               />
             ) : (
               <p className="text-justify indent-8">
@@ -251,16 +258,70 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
             )}
 
             {index === 0 && draft.eventDetails && (
-              <div className="my-3 ml-8 grid grid-cols-[120px_12px_1fr] gap-y-1 rounded border border-slate-200 bg-slate-50/70 px-4 py-3 text-[13px]">
+              <div className="my-3 ml-6 grid grid-cols-[110px_12px_1fr] gap-y-1 rounded border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-[12.5px]">
                 <span className="font-medium">Hari / Tanggal</span>
                 <span>:</span>
-                <span>{draft.eventDetails.hariTanggal}</span>
+                {editable && onUpdateDraft ? (
+                  <input
+                    type="text"
+                    value={draft.eventDetails.hariTanggal}
+                    onChange={(e) =>
+                      onUpdateDraft({
+                        ...draft,
+                        eventDetails: {
+                          ...draft.eventDetails!,
+                          hariTanggal: e.target.value,
+                        },
+                      })
+                    }
+                    className="rounded border border-slate-200 bg-white px-2 py-0.5 text-[12.5px] focus:border-sky-500 focus:outline-none"
+                  />
+                ) : (
+                  <span>{draft.eventDetails.hariTanggal}</span>
+                )}
+
                 <span className="font-medium">Pukul</span>
                 <span>:</span>
-                <span>{draft.eventDetails.waktu}</span>
+                {editable && onUpdateDraft ? (
+                  <input
+                    type="text"
+                    value={draft.eventDetails.waktu}
+                    onChange={(e) =>
+                      onUpdateDraft({
+                        ...draft,
+                        eventDetails: {
+                          ...draft.eventDetails!,
+                          waktu: e.target.value,
+                        },
+                      })
+                    }
+                    className="rounded border border-slate-200 bg-white px-2 py-0.5 text-[12.5px] focus:border-sky-500 focus:outline-none"
+                  />
+                ) : (
+                  <span>{draft.eventDetails.waktu}</span>
+                )}
+
                 <span className="font-medium">Tempat</span>
                 <span>:</span>
-                <span>{draft.eventDetails.tempat}</span>
+                {editable && onUpdateDraft ? (
+                  <input
+                    type="text"
+                    value={draft.eventDetails.tempat}
+                    onChange={(e) =>
+                      onUpdateDraft({
+                        ...draft,
+                        eventDetails: {
+                          ...draft.eventDetails!,
+                          tempat: e.target.value,
+                        },
+                      })
+                    }
+                    className="rounded border border-slate-200 bg-white px-2 py-0.5 text-[12.5px] focus:border-sky-500 focus:outline-none"
+                  />
+                ) : (
+                  <span>{draft.eventDetails.tempat}</span>
+                )}
+
                 <span className="font-medium">Acara</span>
                 <span>:</span>
                 <span className="font-medium">{draft.eventDetails.acara}</span>
@@ -271,8 +332,8 @@ export const OfficialLetterPaper: React.FC<OfficialLetterPaperProps> = ({
       </div>
 
       {/* Blok Tanda Tangan Resmi */}
-      <div className="mt-10 flex justify-end">
-        <div className="w-72 text-[13px]">
+      <div className="mt-9 flex justify-end">
+        <div className="w-68 text-[12.5px]">
           {draft.letterType === 'Nota Dinas' ||
           draft.letterType === 'Surat Tugas' ? (
             <div className="mb-1 text-xs text-slate-600">

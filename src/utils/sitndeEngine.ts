@@ -1,14 +1,13 @@
 import {
   buildSotkParafFlow,
-  HOSPITAL_INFO,
   MASTER_OFFICIALS,
+  MEDICAL_GLOSSARY_WHITELIST,
 } from '../data/mockHospitalData';
 import {
-  AuditLogEntry,
-  DraftStatus,
   LetterDraft,
   LetterType,
-  ParafStep,
+  OfficialProfile,
+  PrecedentDoc,
   RoleUserProfile,
   UrgencyLevel,
   ValidationIssue,
@@ -307,7 +306,8 @@ export function generateDraftFromPrompt(
   promptText: string,
   overrideUnit?: string,
   overrideType?: LetterType,
-  creatorUser?: RoleUserProfile
+  creatorUser?: RoleUserProfile,
+  officialsList: OfficialProfile[] = MASTER_OFFICIALS
 ): LetterDraft {
   const trimmedPrompt = promptText.trim();
   const letterType = overrideType || detectLetterType(trimmedPrompt);
@@ -339,7 +339,8 @@ export function generateDraftFromPrompt(
       pLower.includes('beli') ||
       pLower.includes('unit') ||
       pLower.includes('alat') ||
-      pLower.includes('komputer')
+      pLower.includes('komputer') ||
+      pLower.includes('termometer')
     ) {
       classificationCode = '027';
       classificationDesc = 'Pengadaan Perlengkapan & Alat Kesehatan';
@@ -367,20 +368,20 @@ export function generateDraftFromPrompt(
   }
 
   const kaInstalasi = proposingUnit.includes('Jalan')
-    ? MASTER_OFFICIALS[2]
+    ? officialsList[2]
     : proposingUnit.includes('Farmasi')
-    ? MASTER_OFFICIALS[3]
+    ? officialsList[3]
     : proposingUnit.includes('IPSRS')
-    ? MASTER_OFFICIALS[4]
-    : MASTER_OFFICIALS[1];
+    ? officialsList[4]
+    : officialsList[1];
 
-  const direktur = MASTER_OFFICIALS[9];
-  const wadirYan = MASTER_OFFICIALS[7];
+  const direktur = officialsList[9] || MASTER_OFFICIALS[9];
+  const wadirYan = officialsList[7] || MASTER_OFFICIALS[7];
 
   let recipient =
     'Direktur RSUD Nusantara Jaya melalui Wakil Direktur Umum dan Keuangan';
   let sender = `Kepala ${proposingUnit}`;
-  let signer = kaInstalasi;
+  let signer = kaInstalasi || MASTER_OFFICIALS[1];
   let bodyParagraphs: string[] = [];
   let eventDetails: LetterDraft['eventDetails'] | undefined = undefined;
 
@@ -405,17 +406,28 @@ export function generateDraftFromPrompt(
       'Para Kepala Instalasi, Kepala Bidang, dan Tim Terkait di Lingkungan RSUD Nusantara Jaya';
     sender = wadirYan.position;
     signer = wadirYan;
+    const hasDay = /senin|selasa|rabu|kamis|jumat|sabtu|tanggal|\d{1,2}/i.test(
+      pLower
+    );
+    const hasTime = /pukul|jam|\d{1,2}[.:]\d{2}|wib/i.test(pLower);
+    const hasPlace = /aula|ruang|lantai|gedung|poliklinik/i.test(pLower);
+
     eventDetails = {
-      hariTanggal: pLower.includes('kamis')
-        ? 'Kamis, 19 November 2026'
-        : '[Isi Hari/Tanggal Pelaksanaan]',
-      waktu:
-        pLower.includes('09') || pLower.includes('9')
+      hariTanggal: hasDay
+        ? pLower.includes('kamis')
+          ? 'Kamis, 19 November 2026'
+          : '[Lengkapi Tanggal Pelaksanaan]'
+        : '[Isi Hari/Tanggal]',
+      waktu: hasTime
+        ? pLower.includes('09') || pLower.includes('9')
           ? '09.00 WIB s.d. selesai'
-          : '[Isi Pukul Pelaksanaan]',
-      tempat: pLower.includes('aula')
-        ? 'Aula Pertemuan Lantai 3 RSUD Nusantara Jaya'
-        : '[Isi Ruang/Tempat Rapat]',
+          : '[Lengkapi Pukul Pelaksanaan]'
+        : '[Isi Pukul]',
+      tempat: hasPlace
+        ? pLower.includes('aula')
+          ? 'Aula Pertemuan Lantai 3 RSUD Nusantara Jaya'
+          : '[Lengkapi Ruang/Tempat]'
+        : '[Isi Tempat]',
       acara: subject,
     };
     bodyParagraphs = [
@@ -467,6 +479,25 @@ export function generateDraftFromPrompt(
   const ts = formatNowTimestamp();
   const draftId = `drf-${Date.now()}`;
 
+  const effectiveSignerName =
+    signer.dutyStatus === 'Cuti (Plt.)' && signer.delegateName
+      ? `Plt. ${signer.delegateName}`
+      : signer.dutyStatus === 'Dinas Luar (Plh.)' && signer.delegateName
+      ? `Plh. ${signer.delegateName}`
+      : signer.fullNameWithTitles;
+
+  const effectiveSignerNip =
+    signer.dutyStatus && signer.dutyStatus !== 'Definitif' && signer.delegateNip
+      ? signer.delegateNip
+      : signer.nip;
+
+  const effectiveSignerTitle =
+    signer.dutyStatus === 'Cuti (Plt.)'
+      ? `Plt. ${signer.position}`
+      : signer.dutyStatus === 'Dinas Luar (Plh.)'
+      ? `Plh. ${signer.position}`
+      : signer.position;
+
   return {
     id: draftId,
     creatorId: creatorUser?.id || 'usr-staf',
@@ -487,9 +518,9 @@ export function generateDraftFromPrompt(
         : '-',
     bodyParagraphs,
     eventDetails,
-    signerName: signer.fullNameWithTitles,
-    signerTitle: signer.position,
-    signerNip: signer.nip,
+    signerName: effectiveSignerName,
+    signerTitle: effectiveSignerTitle,
+    signerNip: effectiveSignerNip,
     rawPrompt: trimmedPrompt,
     extractedJson: {
       jenisSurat: letterType,
@@ -503,10 +534,19 @@ export function generateDraftFromPrompt(
       hariTanggal: eventDetails?.hariTanggal,
       waktu: eventDetails?.waktu,
       tempat: eventDetails?.tempat,
+      generationEngine: 'local-rule-engine',
     },
     status: 'Draft',
-    complianceScore: trimmedPrompt.includes('[Isi') ? 92 : 100,
-    parafFlow: buildSotkParafFlow(proposingUnit, letterType, 'Draft'),
+    complianceScore:
+      JSON.stringify({ bodyParagraphs, eventDetails }).includes('[Isi')
+        ? 88
+        : 100,
+    parafFlow: buildSotkParafFlow(
+      proposingUnit,
+      letterType,
+      'Draft',
+      officialsList
+    ),
     auditTrail: [
       {
         id: `aud-${Date.now()}`,
@@ -516,10 +556,10 @@ export function generateDraftFromPrompt(
         actorName: creatorUser?.name || 'Rizky Pratama, A.Md.Kep.',
         actorNip: creatorUser?.nip || '19940312 202012 1 004',
         actorRole: creatorUser?.shortRoleLabel || 'Staf Pengusul',
-        action: 'Membuat Draf via Intent-to-Draft',
+        action: 'Membuat Draf via Rule Engine Lokal',
         fromStatus: '-',
         toStatus: 'Draft',
-        note: 'Draf dibuat menggunakan mesin Intent-to-Draft TND.',
+        note: 'Draf dibuat menggunakan mesin deterministik TND.',
         timestamp: ts,
       },
     ],
@@ -528,116 +568,23 @@ export function generateDraftFromPrompt(
   };
 }
 
-export function transitionDraftWorkflow(
+export function scanWithBiromaticGuard(
   draft: LetterDraft,
-  actionType: 'submit' | 'approve' | 'revise' | 'reject' | 'assign_number',
-  actor: RoleUserProfile,
-  note?: string
-): LetterDraft {
-  const ts = formatNowTimestamp();
-  const prevStatus = draft.status;
-  let nextStatus: DraftStatus = draft.status;
-  let actionLabel = '';
-  let nextTteSigned = draft.tteSigned;
-  let nextOfficialAssigned = draft.officialNumberAssigned;
-  let nextLetterNumber = draft.letterNumber;
-
-  if (actionType === 'submit') {
-    nextStatus = 'Menunggu Paraf Instalasi';
-    actionLabel = 'Ajukan ke Instalasi';
-  } else if (actionType === 'approve') {
-    if (draft.status === 'Menunggu Paraf Instalasi') {
-      nextStatus = 'Menunggu Paraf Kabid';
-      actionLabel = 'Paraf Teknis Tahap 1 (Disetujui)';
-    } else if (draft.status === 'Menunggu Paraf Kabid') {
-      nextStatus = 'Menunggu Verifikasi Wadir';
-      actionLabel = 'Paraf Struktural Tahap 2 (Disetujui)';
-    } else if (draft.status === 'Menunggu Verifikasi Wadir') {
-      nextStatus = 'Menunggu TTE Direktur';
-      actionLabel = 'Verifikasi Kebijakan Wadir (Disetujui)';
-    } else if (draft.status === 'Menunggu TTE Direktur') {
-      nextStatus = 'Selesai / Terbit';
-      nextTteSigned = true;
-      actionLabel = 'Tanda Tangan Elektronik (TTE) Direktur';
-    }
-  } else if (actionType === 'revise') {
-    nextStatus = 'Revisi';
-    actionLabel = 'Kembalikan untuk Revisi';
-  } else if (actionType === 'reject') {
-    nextStatus = 'Ditolak';
-    actionLabel = 'Tolak Pengajuan Surat';
-  } else if (actionType === 'assign_number') {
-    const seq = Math.floor(215 + Math.random() * 750);
-    nextLetterNumber = `${draft.classificationCode}/${seq}/RSUD-NJ/XI/2026`;
-    nextOfficialAssigned = true;
-    nextStatus = 'Selesai / Terbit';
-    actionLabel = `Generate Nomor Surat Resmi (${nextLetterNumber}) & Arsip Otomatis`;
-  }
-
-  const nextFlow: ParafStep[] = buildSotkParafFlow(
-    draft.proposingUnit,
-    draft.letterType,
-    nextStatus
-  ).map((step) => {
-    if (
-      actionType === 'assign_number' &&
-      step.roleId === 'arsiparis'
-    ) {
-      return {
-        ...step,
-        status: 'completed',
-        timestamp: ts,
-        note: `Nomor resmi ${nextLetterNumber} telah diterbitkan & diarsipkan.`,
-      };
-    }
-    if (
-      (actionType === 'revise' || actionType === 'reject') &&
-      step.roleId === actor.roleId
-    ) {
-      return {
-        ...step,
-        status: actionType === 'reject' ? 'rejected' : 'revision',
-        timestamp: ts,
-        note: note || actionLabel,
-      };
-    }
-    return step;
-  });
-
-  const auditEntry: AuditLogEntry = {
-    id: `aud-${Date.now()}-${Math.floor(Math.random() * 999)}`,
-    draftId: draft.id,
-    draftNumber: nextLetterNumber,
-    draftSubject: draft.subject,
-    actorName: actor.name,
-    actorNip: actor.nip,
-    actorRole: actor.shortRoleLabel,
-    action: actionLabel,
-    fromStatus: prevStatus,
-    toStatus: nextStatus,
-    note: note?.trim() || undefined,
-    timestamp: ts,
-  };
-
-  return {
-    ...draft,
-    letterNumber: nextLetterNumber,
-    officialNumberAssigned: nextOfficialAssigned,
-    tteSigned: nextTteSigned,
-    status: nextStatus,
-    parafFlow: nextFlow,
-    auditTrail: [auditEntry, ...draft.auditTrail],
-    updatedAt: ts,
-  };
-}
-
-export function scanWithBiromaticGuard(draft: LetterDraft): {
+  officialsList: OfficialProfile[] = MASTER_OFFICIALS
+): {
   issues: ValidationIssue[];
   complianceScore: number;
+  whitelistedTermsFound: string[];
 } {
   const issues: ValidationIssue[] = [];
   const fullBody = draft.bodyParagraphs.join('\n\n');
+  const combinedText = `${draft.subject}\n${fullBody}`;
 
+  const whitelistedTermsFound = MEDICAL_GLOSSARY_WHITELIST.filter((term) =>
+    new RegExp(`\\b${term.replace('-', '\\-')}\\b`, 'i').test(combinedText)
+  );
+
+  // 1. EYD V & Typo rules
   EYD_RULES.forEach((rule, idx) => {
     const bodyMatches = fullBody.match(rule.pattern);
     if (bodyMatches && bodyMatches.length > 0) {
@@ -668,18 +615,19 @@ export function scanWithBiromaticGuard(draft: LetterDraft): {
     }
   });
 
+  // 2. NIP & Gelar Pejabat validation against Master Officials
   const cleanDigits = draft.signerNip.replace(/\s+/g, '');
-  const matchedOfficial = MASTER_OFFICIALS.find(
+  const cleanSignerBase = draft.signerName
+    .split(',')[0]
+    .replace(/^(Plt\.|Plh\.|dr\.|drg\.|Ns\.|apt\.|Dr\.|H\.)\s*/gi, '')
+    .trim()
+    .toLowerCase();
+
+  const matchedOfficial = officialsList.find(
     (off) =>
-      off.name
-        .toLowerCase()
-        .includes(
-          draft.signerName
-            .split(',')[0]
-            .replace(/^(dr\.|drg\.|Ns\.|apt\.|Dr\.|H\.)\s*/i, '')
-            .trim()
-            .toLowerCase()
-        ) || off.position.toLowerCase() === draft.signerTitle.toLowerCase()
+      off.name.toLowerCase().includes(cleanSignerBase) ||
+      off.position.toLowerCase() ===
+        draft.signerTitle.replace(/^(Plt\.|Plh\.)\s*/i, '').toLowerCase()
   );
 
   const properNipFormat = /^\d{8}\s\d{6}\s\d\s\d{3}$/;
@@ -706,7 +654,11 @@ export function scanWithBiromaticGuard(draft: LetterDraft): {
       field: 'signerNip',
       fixed: false,
     });
-  } else if (matchedOfficial && draft.signerNip !== matchedOfficial.nip) {
+  } else if (
+    matchedOfficial &&
+    matchedOfficial.dutyStatus === 'Definitif' &&
+    draft.signerNip !== matchedOfficial.nip
+  ) {
     issues.push({
       id: 'nip-mismatch-err',
       category: 'nip',
@@ -721,6 +673,7 @@ export function scanWithBiromaticGuard(draft: LetterDraft): {
 
   if (
     matchedOfficial &&
+    matchedOfficial.dutyStatus === 'Definitif' &&
     draft.signerName.trim() !== matchedOfficial.fullNameWithTitles
   ) {
     issues.push({
@@ -735,15 +688,25 @@ export function scanWithBiromaticGuard(draft: LetterDraft): {
     });
   }
 
-  const placeholderMatch = fullBody.match(/\[Isi[^\]]+\]/g);
+  // 3. Incomplete placeholders [Isi ...] or [Lengkapi ...]
+  const eventStr = draft.eventDetails
+    ? `${draft.eventDetails.hariTanggal} ${draft.eventDetails.waktu} ${draft.eventDetails.tempat}`
+    : '';
+  const placeholderMatch = `${fullBody} ${eventStr}`.match(
+    /\[(?:Isi|Lengkapi)[^\]]+\]/g
+  );
   if (placeholderMatch) {
-    placeholderMatch.forEach((ph, idx) => {
+    Array.from(new Set(placeholderMatch)).forEach((ph, idx) => {
       issues.push({
         id: `placeholder-${idx}`,
         category: 'placeholder',
         severity: 'error',
         originalText: ph,
-        suggestedText: 'Kamis, 19 November 2026',
+        suggestedText: ph.toLowerCase().includes('pukul')
+          ? '09.00 WIB s.d. selesai'
+          : ph.toLowerCase().includes('tempat')
+          ? 'Aula Lantai 3 RSUD Nusantara Jaya'
+          : 'Kamis, 19 November 2026',
         explanation:
           'Terdapat penanda data wajib yang masih harus dilengkapi sebelum pengajuan paraf.',
         field: 'body',
@@ -752,6 +715,7 @@ export function scanWithBiromaticGuard(draft: LetterDraft): {
     });
   }
 
+  // 4. UU PDP Guard (Phase 3): 16-digit NIK, No. RM, or patient diagnostic info
   const nikMatch = fullBody.match(/\b\d{16}\b/g);
   if (nikMatch) {
     issues.push({
@@ -759,9 +723,41 @@ export function scanWithBiromaticGuard(draft: LetterDraft): {
       category: 'pdp',
       severity: 'error',
       originalText: nikMatch[0],
-      suggestedText: '[Disamarkan - Sesuai UU PDP]',
+      suggestedText: '[NIK Disamarkan - Sesuai UU PDP]',
       explanation:
-        'Terdeteksi 16 digit menyerupai NIK/Identitas Pribadi Pasien. Sesuai UU PDP, hindari mencantumkan NIK pada surat administrasi umum.',
+        'UU PDP Guard: Terdeteksi 16 digit menyerupai NIK Pasien. Hindari mencantumkan NIK pada naskah dinas umum.',
+      field: 'body',
+      fixed: false,
+    });
+  }
+
+  const rmMatch = fullBody.match(/\b(?:No\.?\s*RM|RM-)\s*:?\s*\d{4,10}\b/gi);
+  if (rmMatch) {
+    issues.push({
+      id: 'pdp-rm-warn',
+      category: 'pdp',
+      severity: 'error',
+      originalText: rmMatch[0],
+      suggestedText: '[No. RM Disamarkan - UU PDP]',
+      explanation:
+        'UU PDP Guard: Terdeteksi Nomor Rekam Medis pasien pada isi surat administrasi umum. Lakukan masking data.',
+      field: 'body',
+      fixed: false,
+    });
+  }
+
+  const patientLeakMatch = fullBody.match(
+    /\b(?:pasien\s+a\.?n\.?\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b/g
+  );
+  if (patientLeakMatch) {
+    issues.push({
+      id: 'pdp-patient-name-warn',
+      category: 'pdp',
+      severity: 'warning',
+      originalText: patientLeakMatch[0],
+      suggestedText: 'pasien [Inisial Disamarkan - UU PDP]',
+      explanation:
+        'UU PDP Guard: Identitas nama lengkap pasien terdeteksi dalam surat non-medis. Gunakan inisial/masking sesuai UU PDP.',
       field: 'body',
       fixed: false,
     });
@@ -773,7 +769,7 @@ export function scanWithBiromaticGuard(draft: LetterDraft): {
   );
   const complianceScore = Math.max(40, Math.min(100, 100 - penalty));
 
-  return { issues, complianceScore };
+  return { issues, complianceScore, whitelistedTermsFound };
 }
 
 export function applySingleBiromaticFix(
@@ -784,13 +780,16 @@ export function applySingleBiromaticFix(
   let updatedSubject = draft.subject;
   let updatedSignerName = draft.signerName;
   let updatedSignerNip = draft.signerNip;
+  let updatedEventDetails = draft.eventDetails
+    ? { ...draft.eventDetails }
+    : undefined;
 
   const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
   if (issue.field === 'body') {
     const regex = new RegExp(`\\b${escapeRegex(issue.originalText)}\\b`, 'gi');
     updatedBody = updatedBody.map((p) => {
-      if (issue.originalText.startsWith('[')) {
+      if (issue.originalText.startsWith('[') || issue.category === 'pdp') {
         return p.replace(issue.originalText, issue.suggestedText);
       }
       return p.replace(regex, (match) => {
@@ -800,6 +799,24 @@ export function applySingleBiromaticFix(
         return issue.suggestedText;
       });
     });
+
+    if (updatedEventDetails && issue.originalText.startsWith('[')) {
+      updatedEventDetails = {
+        ...updatedEventDetails,
+        hariTanggal: updatedEventDetails.hariTanggal.replace(
+          issue.originalText,
+          issue.suggestedText
+        ),
+        waktu: updatedEventDetails.waktu.replace(
+          issue.originalText,
+          issue.suggestedText
+        ),
+        tempat: updatedEventDetails.tempat.replace(
+          issue.originalText,
+          issue.suggestedText
+        ),
+      };
+    }
   } else if (issue.field === 'subject') {
     const regex = new RegExp(`\\b${escapeRegex(issue.originalText)}\\b`, 'gi');
     updatedSubject = updatedSubject.replace(regex, issue.suggestedText);
@@ -813,6 +830,7 @@ export function applySingleBiromaticFix(
     ...draft,
     subject: updatedSubject,
     bodyParagraphs: updatedBody,
+    eventDetails: updatedEventDetails,
     signerName: updatedSignerName,
     signerNip: updatedSignerNip,
     updatedAt: 'Baru diperbaiki Biromatic Guard',
@@ -840,79 +858,90 @@ export function applyAllBiromaticFixes(
   };
 }
 
-export function downloadDraftAsDoc(draft: LetterDraft) {
-  const paragraphsHtml = draft.bodyParagraphs
-    .map(
-      (p) =>
-        `<p style="text-align:justify; margin-bottom:10pt; line-height:1.45;">${p}</p>`
-    )
-    .join('\n');
-
-  const eventBlock = draft.eventDetails
-    ? `<table style="margin: 8pt 0 12pt 24pt; font-size:11pt; border-collapse:collapse;">
-        <tr><td style="width:120pt; padding:2pt 0;">Hari / Tanggal</td><td style="width:12pt;">:</td><td>${draft.eventDetails.hariTanggal}</td></tr>
-        <tr><td style="padding:2pt 0;">Pukul</td><td>:</td><td>${draft.eventDetails.waktu}</td></tr>
-        <tr><td style="padding:2pt 0;">Tempat</td><td>:</td><td>${draft.eventDetails.tempat}</td></tr>
-        <tr><td style="padding:2pt 0;">Acara</td><td>:</td><td>${draft.eventDetails.acara}</td></tr>
-      </table>`
-    : '';
-
-  const headerMeta =
-    draft.letterType === 'Nota Dinas'
-      ? `<div style="text-align:center; font-weight:bold; font-size:12pt; text-decoration:underline; margin-top:12pt; margin-bottom:12pt;">NOTA DINAS</div>
-         <table style="width:100%; font-size:11pt; margin-bottom:10pt; border-bottom:1px solid #000; padding-bottom:6pt;">
-           <tr><td style="width:90pt;">Kepada Yth.</td><td style="width:12pt;">:</td><td>${draft.recipient}</td></tr>
-           <tr><td>Dari</td><td>:</td><td>${draft.sender}</td></tr>
-           <tr><td>Tanggal</td><td>:</td><td>${draft.dateStr}</td></tr>
-           <tr><td>Nomor</td><td>:</td><td>${draft.letterNumber}</td></tr>
-           <tr><td>Sifat</td><td>:</td><td>${draft.urgency}</td></tr>
-           <tr><td>Lampiran</td><td>:</td><td>${draft.attachment}</td></tr>
-           <tr><td>Hal</td><td>:</td><td><strong>${draft.subject}</strong></td></tr>
-         </table>`
-      : `<table style="width:100%; font-size:11pt; margin-top:12pt; margin-bottom:12pt;">
-           <tr>
-             <td style="width:60%; vertical-align:top;">
-               <table>
-                 <tr><td style="width:75pt;">Nomor</td><td>: ${draft.letterNumber}</td></tr>
-                 <tr><td>Sifat</td><td>: ${draft.urgency}</td></tr>
-                 <tr><td>Lampiran</td><td>: ${draft.attachment}</td></tr>
-                 <tr><td>Hal</td><td>: <strong>${draft.subject}</strong></td></tr>
-               </table>
-             </td>
-             <td style="width:40%; vertical-align:top; text-align:right;">
-               ${HOSPITAL_INFO.city}, ${draft.dateStr}
-             </td>
-           </tr>
-         </table>
-         <p style="margin-bottom:10pt;">Kepada Yth.<br/>${draft.recipient}<br/>di Tempat</p>`;
-
-  const html = `
-    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-    <head><meta charset='utf-8'><title>${draft.subject}</title></head>
-    <body style="font-family: Arial, sans-serif; font-size: 11pt; color: #000; margin: 2.5cm 2cm 2.5cm 3cm;">
-      <div style="text-align:center; border-bottom: 3px double #000; padding-bottom: 8pt; margin-bottom: 10pt;">
-        <div style="font-size:11pt; font-weight:bold;">${HOSPITAL_INFO.pemda}</div>
-        <div style="font-size:11pt; font-weight:bold;">${HOSPITAL_INFO.dinas}</div>
-        <div style="font-size:14pt; font-weight:bold;">${HOSPITAL_INFO.name}</div>
-        <div style="font-size:9pt;">${HOSPITAL_INFO.address}</div>
-        <div style="font-size:8.5pt;">${HOSPITAL_INFO.contact}</div>
-      </div>
-      ${headerMeta}
-      ${paragraphsHtml}
-      ${eventBlock}
-      <div style="margin-top:24pt; margin-left:55%;">
-        <p style="margin:0;">${draft.signerTitle},</p>
-        <div style="height:48pt;"></div>
-        <p style="margin:0; font-weight:bold; text-decoration:underline;">${draft.signerName}</p>
-        <p style="margin:0; font-size:10pt;">NIP. ${draft.signerNip}</p>
-      </div>
-    </body>
-    </html>
-  `;
-
-  const blob = new Blob(['\ufeff', html], {
-    type: 'application/msword',
+// API Calls to Express Backend
+export async function apiGenerateIntentDraft(params: {
+  prompt: string;
+  unitName?: string;
+  letterType?: LetterType;
+  creatorUser: RoleUserProfile;
+}): Promise<{ draft: LetterDraft }> {
+  const res = await fetch('/api/ai/intent-to-draft', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(params),
   });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.error || 'Gagal memanggil AI Intent-to-Draft.');
+  }
+  return data;
+}
+
+export async function apiSaveDraft(draft: LetterDraft): Promise<LetterDraft> {
+  const res = await fetch('/api/drafts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(draft),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Gagal menyimpan draf.');
+  return data.draft;
+}
+
+export async function apiUpdateDraft(draft: LetterDraft): Promise<LetterDraft> {
+  const res = await fetch(`/api/drafts/${encodeURIComponent(draft.id)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(draft),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Gagal memperbarui draf.');
+  return data.draft;
+}
+
+export async function apiTransitionWorkflow(
+  draftId: string,
+  actionType: 'submit' | 'approve' | 'revise' | 'reject' | 'assign_number',
+  actor: RoleUserProfile,
+  note?: string
+): Promise<LetterDraft> {
+  const res = await fetch(
+    `/api/drafts/${encodeURIComponent(draftId)}/transition`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ actionType, actor, note }),
+    }
+  );
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Gagal memperbarui alur paraf.');
+  return data.draft;
+}
+
+export async function apiSearchPrecedents(
+  query: string,
+  letterType?: LetterType
+): Promise<(PrecedentDoc & { relevancePercent: number })[]> {
+  const res = await fetch('/api/rag/precedents', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, letterType }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Gagal mencari preseden arsip.');
+  return data.precedents || [];
+}
+
+export async function downloadDraftAsDoc(draft: LetterDraft) {
+  const res = await fetch('/api/export/docx', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(draft),
+  });
+  if (!res.ok) {
+    throw new Error('Gagal mengunduh file DOCX dari server.');
+  }
+  const blob = await res.blob();
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
@@ -920,7 +949,7 @@ export function downloadDraftAsDoc(draft: LetterDraft) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .slice(0, 40);
-  link.download = `SITNDE-${draft.letterType.replace(/\s+/g, '-')}-${safeName}.doc`;
+  link.download = `SITNDE-${draft.letterType.replace(/\s+/g, '-')}-${safeName}.docx`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

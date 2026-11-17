@@ -1,15 +1,17 @@
 import {
+  ArchiveClassification,
   DraftStatus,
   LetterDraft,
   LetterType,
   OfficialProfile,
   ParafStep,
   PermissionCode,
+  PrecedentDoc,
   RoleId,
   RoleUserProfile,
   SotkRoutingRule,
   TndTemplateSpec,
-} from '../types/sitnde';
+} from '../types/sitnde.ts';
 
 export const HOSPITAL_INFO = {
   pemda: 'PEMERINTAH PROVINSI NUSANTARA',
@@ -20,6 +22,113 @@ export const HOSPITAL_INFO = {
     'Telp. (021) 555-0192 · Laman: rsudnusantara.go.id · Pos-el: tatausaha@rsudnusantara.go.id',
   city: 'Nusantara',
 };
+
+export const MEDICAL_GLOSSARY_WHITELIST = [
+  'IGD',
+  'ICU',
+  'NICU',
+  'PICU',
+  'PACS',
+  'BLUD',
+  'e-RM',
+  'SIMRS',
+  'BTCLS',
+  'ACLS',
+  'PPI',
+  'DPJP',
+  'BPJS',
+  'BPFK',
+  'EKG',
+  'USG',
+  'CT-Scan',
+  'IPSRS',
+  'CSSD',
+  'SBAR',
+  'RBA',
+  'SOTK',
+  'TND',
+  'TTE',
+  'BSrE',
+  'BSSN',
+];
+
+export const ARCHIVE_CLASSIFICATIONS: ArchiveClassification[] = [
+  { code: '000', category: 'Umum', description: 'Tata Usaha, Persuratan Umum, & Kerumahtanggaan' },
+  { code: '005', category: 'Undangan', description: 'Undangan Rapat Dinas, Koordinasi, & Pertemuan Resmi' },
+  { code: '027', category: 'Pengadaan', description: 'Pengadaan Barang/Jasa, Alat Kesehatan, & Pemeliharaan Sarana' },
+  { code: '090', category: 'Perjalanan Dinas', description: 'Surat Tugas, Perjalanan Dinas Dalam/Luar Daerah, & Diklat' },
+  { code: '440', category: 'Kesehatan', description: 'Kebijakan Pelayanan Kesehatan, Akreditasi, & Regulasi RS' },
+  { code: '445', category: 'Pelayanan RS', description: 'Operasional Instalasi Medis, Keperawatan, Penunjang, & Rekam Medis' },
+  { code: '800', category: 'Kepegawaian', description: 'Mutasi, Penugasan SDM, Cuti, Plt./Plh., & Pengembangan Kompetensi' },
+];
+
+export const RAG_PRECEDENT_CORPUS: PrecedentDoc[] = [
+  {
+    id: 'rag-01',
+    letterNumber: '027/041/RSUD-NJ/VIII/2026',
+    letterType: 'Nota Dinas',
+    classificationCode: '027',
+    unitName: 'Instalasi Rawat Jalan',
+    title: 'Pengadaan Perangkat Komputer & Printer Layanan e-RM Poliklinik',
+    keywords: ['pengadaan', 'komputer', 'pc', 'e-rm', 'alat', 'termometer', 'unit', 'rawat'],
+    legalBasis: 'Sesuai Rencana Bisnis dan Anggaran (RBA) BLUD RSUD Nusantara Jaya Tahun Anggaran 2026 serta standar mutu pelayanan rekam medis elektronik.',
+    excerptParagraph:
+      'Guna menjaga kesinambungan pelayanan klinis dan memenuhi standar akreditasi keselamatan pasien, seluruh perangkat yang diusulkan telah melalui telaah spesifikasi teknis bersama Instalasi IPSRS dan dipastikan kompatibel dengan sistem SIMRS terintegrasi.',
+    year: '2026',
+  },
+  {
+    id: 'rag-02',
+    letterNumber: '445/102/RSUD-NJ/IX/2026',
+    letterType: 'Surat Permohonan',
+    classificationCode: '440',
+    unitName: 'Instalasi IPSRS',
+    title: 'Kalibrasi Alat Elektromedik & Uji Laik Fungsi BPFK',
+    keywords: ['kalibrasi', 'ventilator', 'ekg', 'alat', 'medis', 'bpfk', 'monitor', 'suhu', 'termometer'],
+    legalBasis: 'Berdasarkan Peraturan Menteri Kesehatan RI Nomor 54 Tahun 2015 tentang Pengujian dan Kalibrasi Alat Kesehatan.',
+    excerptParagraph:
+      'Pengujian dan kalibrasi alat kesehatan sebagaimana dimaksud dilaksanakan untuk menjamin ketelitian, ketepatan pengukuran klinis, dan keamanan penggunaan perangkat elektromedik bagi pasien maupun tenaga kesehatan.',
+    year: '2026',
+  },
+  {
+    id: 'rag-03',
+    letterNumber: '005/088/RSUD-NJ/X/2026',
+    letterType: 'Surat Undangan',
+    classificationCode: '005',
+    unitName: 'Komite Mutu & Keselamatan Pasien',
+    title: 'Rapat Koordinasi Pokja Akreditasi & Pencegahan Pengendalian Infeksi (PPI)',
+    keywords: ['undangan', 'rapat', 'koordinasi', 'akreditasi', 'ppi', 'mutu', 'aula'],
+    legalBasis: 'Menindaklanjuti program kerja Komite Peningkatan Mutu dan Keselamatan Pasien (PMKP) RSUD Nusantara Jaya.',
+    excerptParagraph:
+      'Setiap Ketua Kelompok Kerja (Pokja) dan Kepala Instalasi dimohon menyiapkan dokumen regulasi internal, bukti implementasi harian, serta matriks tindak lanjut hasil telusur lapangan sebelum rapat dimulai.',
+    year: '2026',
+  },
+  {
+    id: 'rag-04',
+    letterNumber: '090/119/RSUD-NJ/X/2026',
+    letterType: 'Surat Tugas',
+    classificationCode: '090',
+    unitName: 'Instalasi Gawat Darurat (IGD)',
+    title: 'Penugasan Pelatihan Kegawatdaruratan BTCLS / ACLS Tenaga Perawat',
+    keywords: ['tugas', 'pelatihan', 'diklat', 'btcls', 'acls', 'perawat', 'igd', 'workshop'],
+    legalBasis: 'Berdasarkan kalender pengembangan kompetensi SDM kesehatan Dinas Kesehatan Provinsi Nusantara Tahun 2026.',
+    excerptParagraph:
+      'Selama mengikuti kegiatan pelatihan dimaksud, penjadwalan jaga shift pada unit kerja terkait telah diatur secara proporsional oleh Kepala Instalasi agar mutu pelayanan kegawatdaruratan tetap berjalan optimal 24 jam.',
+    year: '2026',
+  },
+  {
+    id: 'rag-05',
+    letterNumber: '440/054/RSUD-NJ/VII/2026',
+    letterType: 'Surat Edaran',
+    classificationCode: '440',
+    unitName: 'Direktorat Pelayanan',
+    title: 'Kepatuhan Input Rekam Medis Elektronik (e-RM) & Privasi Data Pasien (UU PDP)',
+    keywords: ['edaran', 'e-rm', 'rekam medis', 'kepatuhan', 'privasi', 'pdp', 'nik'],
+    legalBasis: 'Mengacu pada Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi dan Permenkes Nomor 24 Tahun 2022 tentang Rekam Medis.',
+    excerptParagraph:
+      'Seluruh unit pelayanan dan administrasi wajib menjaga kerahasiaan identitas pribadi pasien (nama lengkap, NIK, nomor rekam medis, dan diagnosis) serta dilarang mencantumkan data sensitif tersebut pada naskah dinas umum tanpa otorisasi resmi.',
+    year: '2026',
+  },
+];
 
 export const ROLE_USERS: RoleUserProfile[] = [
   {
@@ -60,7 +169,7 @@ export const ROLE_USERS: RoleUserProfile[] = [
     roleId: 'wadir',
     roleLabel: 'Wakil Direktur',
     shortRoleLabel: 'Wakil Direktur',
-    description: 'Verifikasi kebijakan strategis & disposisi pimpinan',
+    description: 'Verifikasi kebijakan strategis, laporan evaluasi & disposisi pimpinan',
     name: 'drg. Kartika Sari, MARS.',
     nip: '19740109 200212 2 004',
     position: 'Wakil Direktur Pelayanan & Penunjang',
@@ -71,7 +180,7 @@ export const ROLE_USERS: RoleUserProfile[] = [
     roleId: 'direktur',
     roleLabel: 'Direktur RSUD (Signing Authority)',
     shortRoleLabel: 'Direktur',
-    description: 'Pengesahan akhir & Tanda Tangan Elektronik (TTE)',
+    description: 'Pengesahan akhir, Management Brief & Tanda Tangan Elektronik (TTE)',
     name: 'Dr. dr. Aris Munandar, Sp.B., MARS.',
     nip: '19691203 199803 1 002',
     position: 'Direktur RSUD Nusantara Jaya',
@@ -82,7 +191,7 @@ export const ROLE_USERS: RoleUserProfile[] = [
     roleId: 'arsiparis',
     roleLabel: 'Bagian Tata Usaha / Arsiparis',
     shortRoleLabel: 'Tata Usaha',
-    description: 'Penomoran surat resmi & registrasi arsip keluar setelah TTE',
+    description: 'Penomoran surat resmi, validasi TND & registrasi arsip keluar setelah TTE',
     name: 'Siti Aminah, S.Sos.',
     nip: '19810614 200801 2 015',
     position: 'Arsiparis Ahli Muda / Subbag Tata Usaha',
@@ -93,7 +202,7 @@ export const ROLE_USERS: RoleUserProfile[] = [
     roleId: 'admin_it',
     roleLabel: 'Admin Sistem / IT',
     shortRoleLabel: 'Admin IT',
-    description: 'Konfigurasi matriks SOTK, manajemen user/role, & audit trail',
+    description: 'Konfigurasi matriks SOTK, master pegawai Plt./Plh., & audit trail',
     name: 'Bagus Prasetyo, S.Kom.',
     nip: '19910908 201903 1 006',
     position: 'Pranata Komputer Ahli Muda (SIMRS)',
@@ -111,6 +220,7 @@ export const ROLE_PERMISSIONS: Record<RoleId, PermissionCode[]> = {
     'view:templates',
     'view:approval_queue',
     'view:archive',
+    'view:reports',
   ],
   kabid: [
     'draft:create_ai',
@@ -121,6 +231,7 @@ export const ROLE_PERMISSIONS: Record<RoleId, PermissionCode[]> = {
     'view:templates',
     'view:approval_queue',
     'view:archive',
+    'view:reports',
   ],
   wadir: [
     'draft:view_all',
@@ -128,12 +239,14 @@ export const ROLE_PERMISSIONS: Record<RoleId, PermissionCode[]> = {
     'view:templates',
     'view:approval_queue',
     'view:archive',
+    'view:reports',
   ],
   direktur: [
     'draft:view_all',
     'document:sign_tte',
     'view:approval_queue',
     'view:archive',
+    'view:reports',
   ],
   arsiparis: [
     'draft:create_ai',
@@ -144,8 +257,9 @@ export const ROLE_PERMISSIONS: Record<RoleId, PermissionCode[]> = {
     'view:templates',
     'view:approval_queue',
     'view:archive',
+    'view:reports',
   ],
-  admin_it: ['view:templates', 'system:manage_sotk_tnd'],
+  admin_it: ['view:templates', 'view:reports', 'system:manage_sotk_tnd'],
 };
 
 export const MASTER_OFFICIALS: OfficialProfile[] = [
@@ -158,6 +272,7 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Staf Administrasi Ruang Rawat Inap',
     unitName: 'Instalasi Rawat Inap',
     sotkLevel: 1,
+    dutyStatus: 'Definitif',
   },
   {
     id: 'off-2',
@@ -168,6 +283,9 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Kepala Instalasi Rawat Inap',
     unitName: 'Instalasi Rawat Inap',
     sotkLevel: 2,
+    dutyStatus: 'Definitif',
+    delegateName: 'Ns. Dwi Anggraini, S.Kep.',
+    delegateNip: '19890411 201402 2 005',
   },
   {
     id: 'off-2b',
@@ -178,6 +296,9 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Kepala Instalasi Rawat Jalan',
     unitName: 'Instalasi Rawat Jalan',
     sotkLevel: 2,
+    dutyStatus: 'Definitif',
+    delegateName: 'dr. Nabila Kusuma',
+    delegateNip: '19881022 201503 2 006',
   },
   {
     id: 'off-2c',
@@ -188,6 +309,7 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Kepala Instalasi Farmasi',
     unitName: 'Instalasi Farmasi',
     sotkLevel: 2,
+    dutyStatus: 'Definitif',
   },
   {
     id: 'off-2d',
@@ -198,6 +320,7 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Kepala Instalasi Pemeliharaan Sarana RS (IPSRS)',
     unitName: 'Instalasi IPSRS',
     sotkLevel: 2,
+    dutyStatus: 'Definitif',
   },
   {
     id: 'off-3',
@@ -208,6 +331,9 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Kepala Bidang Pelayanan Medik & Keperawatan',
     unitName: 'Bidang Pelayanan Medik',
     sotkLevel: 3,
+    dutyStatus: 'Definitif',
+    delegateName: 'dr. Rahmat Hidayat, MARS.',
+    delegateNip: '19800512 200903 1 004',
   },
   {
     id: 'off-3b',
@@ -218,6 +344,7 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Kepala Bagian Umum & Pengadaan',
     unitName: 'Bagian Umum & Pengadaan',
     sotkLevel: 3,
+    dutyStatus: 'Definitif',
   },
   {
     id: 'off-4',
@@ -228,6 +355,7 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Wakil Direktur Pelayanan & Penunjang',
     unitName: 'Direktorat Pelayanan',
     sotkLevel: 4,
+    dutyStatus: 'Definitif',
   },
   {
     id: 'off-4b',
@@ -238,6 +366,7 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Wakil Direktur Umum & Keuangan',
     unitName: 'Direktorat Umum & Keuangan',
     sotkLevel: 4,
+    dutyStatus: 'Definitif',
   },
   {
     id: 'off-5',
@@ -248,6 +377,9 @@ export const MASTER_OFFICIALS: OfficialProfile[] = [
     position: 'Direktur RSUD Nusantara Jaya',
     unitName: 'Direktorat RSUD Nusantara Jaya',
     sotkLevel: 5,
+    dutyStatus: 'Definitif',
+    delegateName: 'drg. Kartika Sari, MARS.',
+    delegateNip: '19740109 200212 2 004',
   },
 ];
 
@@ -313,28 +445,61 @@ export const INITIAL_SOTK_RULES: SotkRoutingRule[] = [
   },
 ];
 
+function resolveOfficialWithPlt(off: OfficialProfile): {
+  displayName: string;
+  displayNip: string;
+  pltPrefix?: string;
+} {
+  if (off.dutyStatus === 'Cuti (Plt.)' && off.delegateName) {
+    return {
+      displayName: `Plt. ${off.delegateName}`,
+      displayNip: off.delegateNip || off.nip,
+      pltPrefix: 'Plt.',
+    };
+  }
+  if (off.dutyStatus === 'Dinas Luar (Plh.)' && off.delegateName) {
+    return {
+      displayName: `Plh. ${off.delegateName}`,
+      displayNip: off.delegateNip || off.nip,
+      pltPrefix: 'Plh.',
+    };
+  }
+  return {
+    displayName: off.fullNameWithTitles,
+    displayNip: off.nip,
+  };
+}
+
 export function buildSotkParafFlow(
   proposingUnit: string,
   letterType: LetterType,
-  targetStatus: DraftStatus = 'Draft'
+  targetStatus: DraftStatus = 'Draft',
+  officialsList: OfficialProfile[] = MASTER_OFFICIALS
 ): ParafStep[] {
   const isSupportUnit =
     proposingUnit.includes('IPSRS') || proposingUnit.includes('Umum');
 
-  const kaInstalasi = proposingUnit.includes('Jalan')
-    ? MASTER_OFFICIALS[2]
+  const kaInstalasiRaw = proposingUnit.includes('Jalan')
+    ? officialsList[2] || MASTER_OFFICIALS[2]
     : proposingUnit.includes('Farmasi')
-    ? MASTER_OFFICIALS[3]
+    ? officialsList[3] || MASTER_OFFICIALS[3]
     : proposingUnit.includes('IPSRS')
-    ? MASTER_OFFICIALS[4]
-    : MASTER_OFFICIALS[1];
+    ? officialsList[4] || MASTER_OFFICIALS[4]
+    : officialsList[1] || MASTER_OFFICIALS[1];
 
-  const kaBidang = isSupportUnit ? MASTER_OFFICIALS[6] : MASTER_OFFICIALS[5];
-  const wadir =
+  const kaBidangRaw = isSupportUnit
+    ? officialsList[6] || MASTER_OFFICIALS[6]
+    : officialsList[5] || MASTER_OFFICIALS[5];
+  const wadirRaw =
     isSupportUnit && letterType === 'Nota Dinas'
-      ? MASTER_OFFICIALS[8]
-      : MASTER_OFFICIALS[7];
-  const direktur = MASTER_OFFICIALS[9];
+      ? officialsList[8] || MASTER_OFFICIALS[8]
+      : officialsList[7] || MASTER_OFFICIALS[7];
+  const direkturRaw = officialsList[9] || MASTER_OFFICIALS[9];
+
+  const kaInst = resolveOfficialWithPlt(kaInstalasiRaw);
+  const kaBid = resolveOfficialWithPlt(kaBidangRaw);
+  const wadir = resolveOfficialWithPlt(wadirRaw);
+  const dir = resolveOfficialWithPlt(direkturRaw);
 
   const stageIndexByStatus: Record<DraftStatus, number> = {
     Draft: 0,
@@ -376,10 +541,13 @@ export function buildSotkParafFlow(
     {
       order: 2,
       roleId: 'ka_instalasi',
-      roleLabel: 'Kepala Instalasi / Unit',
+      roleLabel: kaInst.pltPrefix
+        ? `${kaInst.pltPrefix} Kepala Instalasi`
+        : 'Kepala Instalasi / Unit',
       unitName: proposingUnit,
-      officialName: kaInstalasi.fullNameWithTitles,
-      officialNip: kaInstalasi.nip,
+      officialName: kaInst.displayName,
+      officialNip: kaInst.displayNip,
+      isPltOrPlh: kaInst.pltPrefix,
       status: statusFor(1),
       timestamp: activeIndex > 1 ? '17 Nov 2026 · 09:05 WIB' : undefined,
       note:
@@ -392,10 +560,13 @@ export function buildSotkParafFlow(
     {
       order: 3,
       roleId: 'kabid',
-      roleLabel: 'Kepala Bagian / Bidang',
-      unitName: kaBidang.unitName,
-      officialName: kaBidang.fullNameWithTitles,
-      officialNip: kaBidang.nip,
+      roleLabel: kaBid.pltPrefix
+        ? `${kaBid.pltPrefix} Kepala Bidang`
+        : 'Kepala Bagian / Bidang',
+      unitName: kaBidangRaw.unitName,
+      officialName: kaBid.displayName,
+      officialNip: kaBid.displayNip,
+      isPltOrPlh: kaBid.pltPrefix,
       status: statusFor(2),
       timestamp: activeIndex > 2 ? '17 Nov 2026 · 10:15 WIB' : undefined,
       note:
@@ -408,10 +579,13 @@ export function buildSotkParafFlow(
     {
       order: 4,
       roleId: 'wadir',
-      roleLabel: 'Wakil Direktur',
-      unitName: wadir.unitName,
-      officialName: wadir.fullNameWithTitles,
-      officialNip: wadir.nip,
+      roleLabel: wadir.pltPrefix
+        ? `${wadir.pltPrefix} Wakil Direktur`
+        : 'Wakil Direktur',
+      unitName: wadirRaw.unitName,
+      officialName: wadir.displayName,
+      officialNip: wadir.displayNip,
+      isPltOrPlh: wadir.pltPrefix,
       status: statusFor(3),
       timestamp: activeIndex > 3 ? '17 Nov 2026 · 11:20 WIB' : undefined,
       note:
@@ -424,10 +598,13 @@ export function buildSotkParafFlow(
     {
       order: 5,
       roleId: 'direktur',
-      roleLabel: 'Direktur (TTE Final)',
+      roleLabel: dir.pltPrefix
+        ? `${dir.pltPrefix} Direktur (TTE)`
+        : 'Direktur (TTE Final)',
       unitName: 'Direktorat RSUD Nusantara Jaya',
-      officialName: direktur.fullNameWithTitles,
-      officialNip: direktur.nip,
+      officialName: dir.displayName,
+      officialNip: dir.displayNip,
+      isPltOrPlh: dir.pltPrefix,
       status: statusFor(4),
       timestamp: activeIndex >= 5 ? '17 Nov 2026 · 13:10 WIB' : undefined,
       note:

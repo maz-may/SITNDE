@@ -6,6 +6,7 @@ interface RoleContextValue {
   currentUser: RoleUserProfile;
   allRoleUsers: RoleUserProfile[];
   switchRole: (roleId: RoleId) => void;
+  loginByNip: (nip: string) => Promise<RoleUserProfile>;
   hasPermission: (permission: PermissionCode) => boolean;
   canAccessNav: (nav: string) => boolean;
 }
@@ -21,6 +22,21 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
     () => ROLE_USERS.find((u) => u.roleId === activeRoleId) || ROLE_USERS[0],
     [activeRoleId]
   );
+
+  const loginByNip = async (nip: string): Promise<RoleUserProfile> => {
+    const res = await fetch('/api/auth/login-nip', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nip }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'NIP tidak terdaftar di SIMRS.');
+    }
+    const matched = data.user as RoleUserProfile;
+    setActiveRoleId(matched.roleId);
+    return matched;
+  };
 
   const hasPermission = (permission: PermissionCode): boolean => {
     const perms = ROLE_PERMISSIONS[activeRoleId] || [];
@@ -41,6 +57,8 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
         return activeRoleId !== 'admin_it';
       case 'archive':
         return hasPermission('view:archive');
+      case 'reports':
+        return hasPermission('view:reports');
       case 'admin':
         return hasPermission('system:manage_sotk_tnd');
       default:
@@ -54,6 +72,7 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
         currentUser,
         allRoleUsers: ROLE_USERS,
         switchRole: setActiveRoleId,
+        loginByNip,
         hasPermission,
         canAccessNav,
       }}

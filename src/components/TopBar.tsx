@@ -20,6 +20,7 @@ const SECTION_TITLES: Record<NavSection, string> = {
   guard: 'Validasi Biromatic Guard',
   flow: 'Alur Paraf & Disposisi (DynFlow-SOTK)',
   archive: 'Arsip Naskah Dinas',
+  reports: 'Laporan Evaluasi & Management Brief',
   admin: 'Manajemen SOTK, Role & Audit Trail',
 };
 
@@ -62,6 +63,7 @@ export const TopBar: React.FC<TopBarProps> = ({
           {activeDraftNumber &&
             activeSection !== 'dashboard' &&
             activeSection !== 'archive' &&
+            activeSection !== 'reports' &&
             activeSection !== 'admin' && (
               <>
                 <span

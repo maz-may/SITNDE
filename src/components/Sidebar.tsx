@@ -1,9 +1,11 @@
 import React from 'react';
 import {
   Archive,
+  BarChart3,
   FilePlus2,
   FileText,
   GitBranch,
+  KeyRound,
   LayoutDashboard,
   Settings2,
   ShieldCheck,
@@ -20,6 +22,7 @@ interface SidebarProps {
   pendingQueueCount: number;
   mobileOpen: boolean;
   onCloseMobile: () => void;
+  onOpenLoginModal: () => void;
 }
 
 function getFlowLabelForRole(roleId: RoleId): string {
@@ -46,6 +49,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   pendingQueueCount,
   mobileOpen,
   onCloseMobile,
+  onOpenLoginModal,
 }) => {
   const { currentUser, canAccessNav } = useRole();
 
@@ -68,6 +72,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: GitBranch,
     },
     { id: 'archive', label: 'Arsip Surat', icon: Archive },
+    { id: 'reports', label: 'Laporan & Brief', icon: BarChart3 },
     { id: 'admin', label: 'Manajemen SOTK & Audit', icon: Settings2 },
   ];
 
@@ -118,7 +123,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Navigation Links Filtered by Active RBAC Role */}
-      <nav className="flex-1 space-y-1 px-3 py-4" aria-label="Menu Utama SITNDE">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4" aria-label="Menu Utama SITNDE">
         {visibleItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -161,7 +166,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         })}
       </nav>
 
-      {/* Active RBAC Employee Identity */}
+      {/* Active RBAC Employee Identity + NIP Login Action */}
       <div className="border-t border-white/10 px-5 py-4">
         <div className="text-[11px] font-semibold tracking-wide text-sky-300 uppercase">
           {currentUser.shortRoleLabel}
@@ -175,6 +180,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="mt-0.5 font-mono text-[11px] text-slate-400 tabular-nums">
           NIP {currentUser.nip}
         </div>
+        <button
+          type="button"
+          onClick={onOpenLoginModal}
+          className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+        >
+          <KeyRound className="h-3.5 w-3.5 text-sky-300" />
+          <span>Login NIP Pegawai</span>
+        </button>
       </div>
     </div>
   );

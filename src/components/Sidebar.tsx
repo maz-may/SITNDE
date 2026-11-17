@@ -49,7 +49,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   mobileOpen,
   onCloseMobile,
 }) => {
-  const { currentUser, canAccessNav, logout } = useRole();
+  const { authEnabled, currentUser, canAccessNav, logout } = useRole();
 
   const navItems: {
     id: NavSection;
@@ -178,17 +178,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="mt-0.5 font-mono text-[11px] text-slate-400 tabular-nums">
           NIP {currentUser.nip}
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            onCloseMobile();
-            logout();
-          }}
-          className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-red-400/30 bg-red-500/15 px-3 py-1.5 text-xs font-medium text-red-100 hover:bg-red-500/25 transition-colors"
-        >
-          <LogOut className="h-3.5 w-3.5 text-red-300" />
-          <span>Logout</span>
-        </button>
+        {authEnabled && (
+          <button
+            type="button"
+            onClick={() => {
+              onCloseMobile();
+              logout();
+            }}
+            className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-red-400/30 bg-red-500/15 px-3 py-1.5 text-xs font-medium text-red-100 hover:bg-red-500/25 transition-colors"
+          >
+            <LogOut className="h-3.5 w-3.5 text-red-300" />
+            <span>Logout</span>
+          </button>
+        )}
       </div>
     </div>
   );

@@ -3,8 +3,11 @@ import { ROLE_PERMISSIONS, ROLE_USERS } from '../data/mockHospitalData';
 import { PermissionCode, RoleId, RoleUserProfile } from '../types/sitnde';
 
 const AUTH_STORAGE_KEY = 'sitnde_auth_role_id';
+// Fitur login dinonaktifkan sementara — ubah ke true untuk mengaktifkan kembali halaman login
+const AUTH_ENABLED = false;
 
 interface RoleContextValue {
+  authEnabled: boolean;
   isAuthenticated: boolean;
   currentUser: RoleUserProfile;
   allRoleUsers: RoleUserProfile[];
@@ -24,6 +27,7 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [activeRoleId, setActiveRoleId] = useState<RoleId>(() => {
+    if (!AUTH_ENABLED) return 'staf';
     try {
       const saved = localStorage.getItem(AUTH_STORAGE_KEY) as RoleId | null;
       if (saved && ROLE_USERS.some((u) => u.roleId === saved)) {
@@ -36,6 +40,7 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
   });
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    if (!AUTH_ENABLED) return true;
     try {
       const saved = localStorage.getItem(AUTH_STORAGE_KEY) as RoleId | null;
       return Boolean(saved && ROLE_USERS.some((u) => u.roleId === saved));
@@ -51,7 +56,7 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const switchRole = (roleId: RoleId) => {
     setActiveRoleId(roleId);
-    if (isAuthenticated) {
+    if (AUTH_ENABLED && isAuthenticated) {
       try {
         localStorage.setItem(AUTH_STORAGE_KEY, roleId);
       } catch {
@@ -76,15 +81,18 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
     const matched = data.user as RoleUserProfile;
     setActiveRoleId(matched.roleId);
     setIsAuthenticated(true);
-    try {
-      localStorage.setItem(AUTH_STORAGE_KEY, matched.roleId);
-    } catch {
-      // Ignore storage write errors
+    if (AUTH_ENABLED) {
+      try {
+        localStorage.setItem(AUTH_STORAGE_KEY, matched.roleId);
+      } catch {
+        // Ignore storage write errors
+      }
     }
     return matched;
   };
 
   const logout = () => {
+    if (!AUTH_ENABLED) return;
     setIsAuthenticated(false);
     setActiveRoleId('staf');
     try {
@@ -125,7 +133,8 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <RoleContext.Provider
       value={{
-        isAuthenticated,
+        authEnabled: AUTH_ENABLED,
+        isAuthenticated: AUTH_ENABLED ? isAuthenticated : true,
         currentUser,
         allRoleUsers: ROLE_USERS,
         switchRole,

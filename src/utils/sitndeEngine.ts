@@ -379,7 +379,7 @@ export function generateDraftFromPrompt(
   const wadirYan = officialsList[7] || MASTER_OFFICIALS[7];
 
   let recipient =
-    'Direktur RSUD Nusantara Jaya melalui Wakil Direktur Umum dan Keuangan';
+    'Direktur RSUD R.T. Notopuro melalui Wakil Direktur Umum dan Keuangan';
   let sender = `Kepala ${proposingUnit}`;
   let signer = kaInstalasi || MASTER_OFFICIALS[1];
   let bodyParagraphs: string[] = [];
@@ -393,8 +393,8 @@ export function generateDraftFromPrompt(
       pLower.includes('alat') ||
       pLower.includes('komputer') ||
       pLower.includes('termometer')
-        ? 'Direktur RSUD Nusantara Jaya melalui Wakil Direktur Umum dan Keuangan'
-        : 'Wakil Direktur Pelayanan dan Penunjang RSUD Nusantara Jaya';
+        ? 'Direktur RSUD R.T. Notopuro melalui Wakil Direktur Umum dan Keuangan'
+        : 'Wakil Direktur Pelayanan dan Penunjang RSUD R.T. Notopuro';
 
     bodyParagraphs = [
       `Dengan hormat, sehubungan dengan upaya peningkatan mutu dan kelancaran operasional pelayanan pada ${proposingUnit}, bersama ini kami sampaikan kondisi kebutuhan teknis yang memerlukan dukungan pengadaan/penanganan segera.`,
@@ -403,7 +403,7 @@ export function generateDraftFromPrompt(
     ];
   } else if (letterType === 'Surat Undangan') {
     recipient =
-      'Para Kepala Instalasi, Kepala Bidang, dan Tim Terkait di Lingkungan RSUD Nusantara Jaya';
+      'Para Kepala Instalasi, Kepala Bidang, dan Tim Terkait di Lingkungan RSUD R.T. Notopuro';
     sender = wadirYan.position;
     signer = wadirYan;
     const hasDay = /senin|selasa|rabu|kamis|jumat|sabtu|tanggal|\d{1,2}/i.test(
@@ -425,13 +425,13 @@ export function generateDraftFromPrompt(
         : '[Isi Pukul]',
       tempat: hasPlace
         ? pLower.includes('aula')
-          ? 'Aula Pertemuan Lantai 3 RSUD Nusantara Jaya'
+          ? 'Aula Pertemuan Lantai 3 RSUD R.T. Notopuro'
           : '[Lengkapi Ruang/Tempat]'
         : '[Isi Tempat]',
       acara: subject,
     };
     bodyParagraphs = [
-      `Dengan hormat, dalam rangka koordinasi dan percepatan pelaksanaan program kerja di lingkungan RSUD Nusantara Jaya, dengan ini kami mengundang Bapak/Ibu untuk menghadiri rapat dinas yang akan diselenggarakan pada:`,
+      `Dengan hormat, dalam rangka koordinasi dan percepatan pelaksanaan program kerja di lingkungan RSUD R.T. Notopuro, dengan ini kami mengundang Bapak/Ibu untuk menghadiri rapat dinas yang akan diselenggarakan pada:`,
       `Mengingat pentingnya agenda pembahasan dimaksud, dimohon Bapak/Ibu hadir tepat pada waktunya serta membawa bahan evaluasi unit kerja masing-masing.`,
       `Demikian surat undangan ini kami sampaikan. Atas perhatian dan kehadirannya, kami ucapkan terima kasih.`,
     ];
@@ -445,8 +445,8 @@ export function generateDraftFromPrompt(
         ? items.join(', ')
         : '[Isi Nama & NIP Pegawai yang Ditugaskan]';
     bodyParagraphs = [
-      `Dasar: Program Peningkatan Kompetensi SDM dan Mutu Pelayanan RSUD Nusantara Jaya Tahun Anggaran 2026.`,
-      `Direktur RSUD Nusantara Jaya menugaskan kepada ${personPhrase} dari ${proposingUnit} untuk melaksanakan kegiatan ${subject} sesuai jadwal yang telah ditetapkan.`,
+      `Dasar: Program Peningkatan Kompetensi SDM dan Mutu Pelayanan RSUD R.T. Notopuro Tahun Anggaran 2026.`,
+      `Direktur RSUD R.T. Notopuro menugaskan kepada ${personPhrase} dari ${proposingUnit} untuk melaksanakan kegiatan ${subject} sesuai jadwal yang telah ditetapkan.`,
       `Setelah selesai melaksanakan tugas, pegawai yang bersangkutan wajib menyampaikan laporan tertulis kepada atasan langsung dan Bagian Kepegawaian paling lambat 5 (lima) hari kerja setelah pelaksanaan kegiatan.`,
     ];
   } else if (letterType === 'Surat Permohonan') {
@@ -460,17 +460,17 @@ export function generateDraftFromPrompt(
         ? items.join(', ')
         : 'perangkat pelayanan kesehatan sesuai daftar terlampir';
     bodyParagraphs = [
-      `Dengan hormat, dalam rangka menjamin keakuratan fungsi alat kesehatan serta pemenuhan standar keselamatan pasien di RSUD Nusantara Jaya, bersama ini kami mengajukan permohonan dukungan teknis terkait ${itemPhrase}.`,
+      `Dengan hormat, dalam rangka menjamin keakuratan fungsi alat kesehatan serta pemenuhan standar keselamatan pasien di RSUD R.T. Notopuro, bersama ini kami mengajukan permohonan dukungan teknis terkait ${itemPhrase}.`,
       `Adapun rincian jadwal kesiapan perangkat dan lokasi unit pelayanan telah kami koordinasikan melalui ${proposingUnit} untuk kelancaran proses pemeriksaan di lapangan.`,
       `Demikian surat permohonan ini kami sampaikan. Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih.`,
     ];
   } else {
     recipient =
-      'Seluruh Kepala Instalasi, Kepala Bidang, dan Pegawai RSUD Nusantara Jaya';
+      'Seluruh Kepala Instalasi, Kepala Bidang, dan Pegawai RSUD R.T. Notopuro';
     sender = direktur.position;
     signer = direktur;
     bodyParagraphs = [
-      `Dalam rangka menertibkan tata kelola administrasi pelayanan dan kepatuhan standar operasional prosedur di lingkungan RSUD Nusantara Jaya, seluruh unit kerja diwajibkan melaksanakan ketentuan sebagaimana dimaksud pada perihal di atas.`,
+      `Dalam rangka menertibkan tata kelola administrasi pelayanan dan kepatuhan standar operasional prosedur di lingkungan RSUD R.T. Notopuro, seluruh unit kerja diwajibkan melaksanakan ketentuan sebagaimana dimaksud pada perihal di atas.`,
       `Setiap Kepala Instalasi dan Kepala Bidang agar melakukan pemantauan berkala terhadap pelaksanaan ketentuan ini pada unit kerja masing-masing mulai tanggal ditetapkan.`,
       `Demikian surat edaran ini disampaikan untuk dilaksanakan dengan penuh tanggung jawab.`,
     ];
@@ -705,7 +705,7 @@ export function scanWithBiromaticGuard(
         suggestedText: ph.toLowerCase().includes('pukul')
           ? '09.00 WIB s.d. selesai'
           : ph.toLowerCase().includes('tempat')
-          ? 'Aula Lantai 3 RSUD Nusantara Jaya'
+          ? 'Aula Lantai 3 RSUD R.T. Notopuro'
           : 'Kamis, 19 November 2026',
         explanation:
           'Terdapat penanda data wajib yang masih harus dilengkapi sebelum pengajuan paraf.',
@@ -859,6 +859,32 @@ export function applyAllBiromaticFixes(
 }
 
 // API Calls to Express Backend
+async function parseJsonResponse<T>(
+  res: Response,
+  fallbackError: string
+): Promise<T> {
+  const rawText = await res.text();
+  let data: Record<string, unknown> | null = null;
+  if (rawText) {
+    try {
+      data = JSON.parse(rawText) as Record<string, unknown>;
+    } catch {
+      if (!res.ok) {
+        throw new Error(
+          `${fallbackError} (HTTP ${res.status}: respons server bukan JSON yang valid).`
+        );
+      }
+      throw new Error('Respons server tidak berformat JSON yang valid.');
+    }
+  }
+  if (!res.ok) {
+    const errMsg =
+      data && typeof data.error === 'string' ? data.error : fallbackError;
+    throw new Error(errMsg);
+  }
+  return (data ?? {}) as T;
+}
+
 export async function apiGenerateIntentDraft(params: {
   prompt: string;
   unitName?: string;
@@ -870,11 +896,10 @@ export async function apiGenerateIntentDraft(params: {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(params),
   });
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.error || 'Gagal memanggil AI Intent-to-Draft.');
-  }
-  return data;
+  return parseJsonResponse<{ draft: LetterDraft }>(
+    res,
+    'Gagal memanggil AI Intent-to-Draft.'
+  );
 }
 
 export async function apiSaveDraft(draft: LetterDraft): Promise<LetterDraft> {
@@ -883,8 +908,10 @@ export async function apiSaveDraft(draft: LetterDraft): Promise<LetterDraft> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(draft),
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Gagal menyimpan draf.');
+  const data = await parseJsonResponse<{ draft: LetterDraft }>(
+    res,
+    'Gagal menyimpan draf.'
+  );
   return data.draft;
 }
 
@@ -894,8 +921,10 @@ export async function apiUpdateDraft(draft: LetterDraft): Promise<LetterDraft> {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(draft),
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Gagal memperbarui draf.');
+  const data = await parseJsonResponse<{ draft: LetterDraft }>(
+    res,
+    'Gagal memperbarui draf.'
+  );
   return data.draft;
 }
 
@@ -913,8 +942,10 @@ export async function apiTransitionWorkflow(
       body: JSON.stringify({ actionType, actor, note }),
     }
   );
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Gagal memperbarui alur paraf.');
+  const data = await parseJsonResponse<{ draft: LetterDraft }>(
+    res,
+    'Gagal memperbarui alur paraf.'
+  );
   return data.draft;
 }
 
@@ -927,8 +958,9 @@ export async function apiSearchPrecedents(
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query, letterType }),
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Gagal mencari preseden arsip.');
+  const data = await parseJsonResponse<{
+    precedents?: (PrecedentDoc & { relevancePercent: number })[];
+  }>(res, 'Gagal mencari preseden arsip.');
   return data.precedents || [];
 }
 

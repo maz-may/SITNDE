@@ -356,10 +356,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       </td>
                       <td className="px-4 py-3.5 align-top">
                         <div className="text-xs font-medium text-slate-800">
-                          {currentStep.roleLabel}
+                          {currentStep?.roleLabel || '-'}
                         </div>
                         <div className="mt-0.5 text-xs text-slate-500">
-                          {currentStep.officialName}
+                          {currentStep?.officialName || '-'}
                         </div>
                       </td>
                       <td className="px-4 py-3.5 align-top text-right">

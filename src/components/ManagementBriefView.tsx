@@ -107,7 +107,7 @@ export const ManagementBriefView: React.FC<ManagementBriefViewProps> = ({
         <section className="flex flex-col justify-between gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-center">
           <div>
             <div className="text-xs font-semibold uppercase tracking-wide text-sky-700">
-              Evaluasi Kinerja Tata Naskah Dinas · RSUD Nusantara Jaya
+              Evaluasi Kinerja Tata Naskah Dinas · RSUD R.T. Notopuro
             </div>
             <h2 className="mt-1 font-display text-lg font-bold text-[#0F294A]">
               Laporan Adopsi SITNDE & Management Brief Pimpinan

@@ -1,0 +1,1745 @@
+{
+  "drafts": [
+    {
+      "id": "drf-1795049150970",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "027",
+      "proposingUnit": "Instalasi Rawat Inap",
+      "recipient": "Direktur RSUD R.T. Notopuro",
+      "sender": "Kepala Instalasi Rawat Inap",
+      "subject": "Permohonan Pengadaan Alat Kesehatan Termometer Digital",
+      "urgency": "Biasa",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas",
+      "bodyParagraphs": [
+        "Sehubungan dengan upaya peningkatan mutu pelayanan medis dan akurasi pemantauan suhu tubuh pasien di Instalasi Rawat Inap RSUD R.T. Notopuro, dipandang perlu untuk melakukan penambahan sarana prasarana penunjang berupa alat kesehatan.",
+        "Bersama ini kami mengajukan permohonan pengadaan 3 (tiga) unit termometer digital yang akan ditempatkan di ruang rawat inap. Pengadaan alat tersebut sangat diperlukan untuk mempercepat proses pemeriksaan tanda-tanda vital pasien secara efektif dan efisien.",
+        "Demikian permohonan ini kami sampaikan. Besar harapan kami agar Bapak/Ibu dapat menyetujui usulan pengadaan tersebut demi optimalisasi pelayanan kepada masyarakat. Atas perhatian dan kerjasamanya, kami ucapkan terima kasih."
+      ],
+      "signerName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+      "signerTitle": "Kepala Instalasi Rawat Inap",
+      "signerNip": "19850719 201001 2 011",
+      "rawPrompt": "Buatkan nota dinas permohonan pengadaan 3 unit termometer digital untuk ruang rawat inap",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "027 / Pengadaan",
+        "unitPengusul": "Instalasi Rawat Inap",
+        "tujuanSurat": "Direktur RSUD R.T. Notopuro",
+        "perihal": "Permohonan Pengadaan Alat Kesehatan Termometer Digital",
+        "urgensi": "Biasa",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [
+          "3 unit termometer digital"
+        ],
+        "generationEngine": "gemini-3.1-flash-lite"
+      },
+      "status": "Draft",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "current",
+          "note": "Draf siap diajukan ke Kepala Instalasi."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "pending"
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-1795049150971",
+          "draftId": "drf-1795049150970",
+          "draftNumber": "[Draf Awal]",
+          "draftSubject": "Permohonan Pengadaan Alat Kesehatan Termometer Digital",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Membuat Draf via Gemini AI (gemini-3.1-flash-lite)",
+          "fromStatus": "-",
+          "toStatus": "Draft",
+          "note": "Ekstraksi intent & penyusunan narasi EYD V berhasil dijalankan melalui server.",
+          "timestamp": "17 Nov 2026 · 00:45 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 00:45 WIB",
+      "updatedAt": "17 Nov 2026 · 00:45 WIB"
+    },
+    {
+      "id": "drf-1795049088387",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "027",
+      "proposingUnit": "Instalasi Rawat Inap",
+      "recipient": "Pejabat Pembuat Komitmen (PPK) RSUD R.T. Notopuro",
+      "sender": "Kepala Instalasi Rawat Inap",
+      "subject": "Permohonan Pengadaan Termometer Digital",
+      "urgency": "Biasa",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas",
+      "bodyParagraphs": [
+        "Dalam rangka menjaga mutu pelayanan dan kelancaran pemantauan kondisi pasien pada Instalasi Rawat Inap RSUD R.T. Notopuro, bersama ini kami mengajukan permohonan pengadaan alat kesehatan penunjang pelayanan medis.",
+        "Adapun kebutuhan yang diusulkan yaitu pengadaan termometer digital sebanyak 3 (tiga) unit guna mendukung pengukuran suhu tubuh pasien secara cepat, higienis, dan akurat selama masa perawatan di ruang rawat inap.",
+        "Demikian nota dinas permohonan ini kami sampaikan agar dapat ditindaklanjuti sesuai dengan ketentuan pengadaan barang dan jasa yang berlaku. Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "signerName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+      "signerTitle": "Kepala Instalasi Rawat Inap",
+      "signerNip": "19850719 201001 2 011",
+      "rawPrompt": "Buatkan nota dinas pengadaan 3 unit termometer digital",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "027 / Pengadaan",
+        "unitPengusul": "Instalasi Rawat Inap",
+        "tujuanSurat": "Pejabat Pembuat Komitmen (PPK) RSUD R.T. Notopuro",
+        "perihal": "Permohonan Pengadaan Termometer Digital",
+        "urgensi": "Biasa",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [
+          "Termometer digital (3 unit)"
+        ],
+        "generationEngine": "gemini-4-hydrogen"
+      },
+      "status": "Draft",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "current",
+          "note": "Draf siap diajukan ke Kepala Instalasi."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "pending"
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-1795049088387",
+          "draftId": "drf-1795049088387",
+          "draftNumber": "[Draf Awal]",
+          "draftSubject": "Permohonan Pengadaan Termometer Digital",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Membuat Draf via Gemini AI (gemini-4-hydrogen)",
+          "fromStatus": "-",
+          "toStatus": "Draft",
+          "note": "Ekstraksi intent & penyusunan narasi EYD V berhasil dijalankan melalui server.",
+          "timestamp": "17 Nov 2026 · 00:44 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 00:44 WIB",
+      "updatedAt": "17 Nov 2026 · 00:44 WIB"
+    },
+    {
+      "id": "drf-1795049076265",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "000",
+      "proposingUnit": "Instalasi Rawat Inap",
+      "recipient": "[Isi Jabatan Penerima]",
+      "sender": "Kepala Instalasi Rawat Inap",
+      "subject": "Uji Coba Penyusunan Naskah Dinas",
+      "urgency": "Biasa",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas",
+      "bodyParagraphs": [
+        "Dengan hormat, sehubungan dengan pelaksanaan uji coba penyusunan naskah dinas pada Sistem Informasi Tata Naskah Dinas Elektronik (SITNDE) di lingkungan RSUD R.T. Notopuro, bersama ini kami sampaikan draf naskah dinas dari Instalasi Rawat Inap.",
+        "Maksud penyusunan naskah dinas ini adalah untuk memastikan kelancaran serta kesesuaian format penyampaian informasi dan koordinasi administrasi antarunit kerja sesuai ketentuan yang berlaku. Adapun rincian keperluan atau tindak lanjut lebih lanjut akan disesuaikan dengan kebutuhan operasional unit.",
+        "Demikian nota dinas ini kami sampaikan. Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "signerName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+      "signerTitle": "Kepala Instalasi Rawat Inap",
+      "signerNip": "19850719 201001 2 011",
+      "rawPrompt": "test",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "000 / Umum",
+        "unitPengusul": "Instalasi Rawat Inap",
+        "tujuanSurat": "[Isi Jabatan Penerima]",
+        "perihal": "Uji Coba Penyusunan Naskah Dinas",
+        "urgensi": "Biasa",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [],
+        "generationEngine": "gemini-4-hydrogen"
+      },
+      "status": "Draft",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "current",
+          "note": "Draf siap diajukan ke Kepala Instalasi."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "pending"
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-1795049076265",
+          "draftId": "drf-1795049076265",
+          "draftNumber": "[Draf Awal]",
+          "draftSubject": "Uji Coba Penyusunan Naskah Dinas",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Membuat Draf via Gemini AI (gemini-4-hydrogen)",
+          "fromStatus": "-",
+          "toStatus": "Draft",
+          "note": "Ekstraksi intent & penyusunan narasi EYD V berhasil dijalankan melalui server.",
+          "timestamp": "17 Nov 2026 · 00:44 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 00:44 WIB",
+      "updatedAt": "17 Nov 2026 · 00:44 WIB"
+    },
+    {
+      "id": "drf-1795049058145",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "027",
+      "proposingUnit": "Instalasi Rawat Inap",
+      "recipient": "Pejabat Pembuat Komitmen (PPK) RSUD R.T. Notopuro",
+      "sender": "Kepala Instalasi Rawat Inap",
+      "subject": "Permohonan Pengadaan Termometer Digital",
+      "urgency": "Biasa",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas",
+      "bodyParagraphs": [
+        "Dalam rangka menunjang kelancaran pelayanan keperawatan dan pemantauan tanda-tanda vital pasien di Instalasi Rawat Inap RSUD R.T. Notopuro, diperlukan dukungan peralatan kesehatan dasar yang memadai dan berfungsi dengan baik.",
+        "Sehubungan dengan hal tersebut, kami mengajukan permohonan pengadaan sebanyak 3 (tiga) unit termometer digital guna memenuhi kebutuhan operasional pelayanan pada unit kami.",
+        "Demikian nota dinas ini kami sampaikan untuk dapat ditindaklanjuti sebagaimana mestinya. Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "signerName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+      "signerTitle": "Kepala Instalasi Rawat Inap",
+      "signerNip": "19850719 201001 2 011",
+      "rawPrompt": "Buatkan nota dinas pengadaan 3 unit termometer digital",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "027 / Pengadaan",
+        "unitPengusul": "Instalasi Rawat Inap",
+        "tujuanSurat": "Pejabat Pembuat Komitmen (PPK) RSUD R.T. Notopuro",
+        "perihal": "Permohonan Pengadaan Termometer Digital",
+        "urgensi": "Biasa",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [
+          "3 unit termometer digital"
+        ],
+        "generationEngine": "gemini-4-hydrogen"
+      },
+      "status": "Draft",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "current",
+          "note": "Draf siap diajukan ke Kepala Instalasi."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "pending"
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-1795049058145",
+          "draftId": "drf-1795049058145",
+          "draftNumber": "[Draf Awal]",
+          "draftSubject": "Permohonan Pengadaan Termometer Digital",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Membuat Draf via Gemini AI (gemini-4-hydrogen)",
+          "fromStatus": "-",
+          "toStatus": "Draft",
+          "note": "Ekstraksi intent & penyusunan narasi EYD V berhasil dijalankan melalui server.",
+          "timestamp": "17 Nov 2026 · 00:44 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 00:44 WIB",
+      "updatedAt": "17 Nov 2026 · 00:44 WIB"
+    },
+    {
+      "id": "drf-1795048987081",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "027",
+      "proposingUnit": "Instalasi Rawat Inap",
+      "recipient": "Pejabat Pembuat Komitmen (PPK) RSUD R.T. Notopuro",
+      "sender": "Kepala Instalasi Rawat Inap",
+      "subject": "Permohonan Pengadaan Termometer Digital",
+      "urgency": "Biasa",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas",
+      "bodyParagraphs": [
+        "Sehubungan dengan upaya pemenuhan standar pelayanan medis dan kelancaran pemantauan kondisi pasien di Instalasi Rawat Inap RSUD R.T. Notopuro, diperlukan dukungan peralatan pemeriksaan tanda-tanda vital yang akurat dan siap pakai.",
+        "Berdasarkan kebutuhan operasional pelayanan keperawatan saat ini, kami mengajukan permohonan pengadaan alat kesehatan berupa termometer digital sebanyak 3 (tiga) unit guna menunjang kelancaran pelayanan pasien di Instalasi Rawat Inap.",
+        "Demikian nota dinas ini kami sampaikan sebagai bahan pertimbangan dan tindak lanjut. Atas perhatian serta kerja sama Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "signerName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+      "signerTitle": "Kepala Instalasi Rawat Inap",
+      "signerNip": "19850719 201001 2 011",
+      "rawPrompt": "Buatkan nota dinas pengadaan 3 unit termometer digital",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "027 / Pengadaan",
+        "unitPengusul": "Instalasi Rawat Inap",
+        "tujuanSurat": "Pejabat Pembuat Komitmen (PPK) RSUD R.T. Notopuro",
+        "perihal": "Permohonan Pengadaan Termometer Digital",
+        "urgensi": "Biasa",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [
+          "Termometer Digital (3 unit)"
+        ],
+        "generationEngine": "gemini-4-hydrogen"
+      },
+      "status": "Draft",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "current",
+          "note": "Draf siap diajukan ke Kepala Instalasi."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "pending"
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-1795048987081",
+          "draftId": "drf-1795048987081",
+          "draftNumber": "[Draf Awal]",
+          "draftSubject": "Permohonan Pengadaan Termometer Digital",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Membuat Draf via Gemini AI (gemini-4-hydrogen)",
+          "fromStatus": "-",
+          "toStatus": "Draft",
+          "note": "Ekstraksi intent & penyusunan narasi EYD V berhasil dijalankan melalui server.",
+          "timestamp": "17 Nov 2026 · 00:43 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 00:43 WIB",
+      "updatedAt": "17 Nov 2026 · 00:43 WIB"
+    },
+    {
+      "id": "drf-2026-001",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "027",
+      "proposingUnit": "Instalasi Rawat Inap",
+      "recipient": "Direktur RSUD R.T. Notopuro melalui Wakil Direktur Umum dan Keuangan",
+      "sender": "Kepala Instalasi Rawat Inap",
+      "subject": "Permohonan Pengadaan 3 Unit Termometer Digital Ruang Rawat Inap",
+      "urgency": "Penting",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas spesifikasi teknis",
+      "bodyParagraphs": [
+        "Dengan hormat, dalam rangka menjaga mutu pemantauan tanda-tanda vital pasien secara akurat pada Ruang Rawat Inap Kelas I dan Kelas II, bersama ini kami laporkan bahwa beberapa unit termometer klinis eksisting mengalami deviasi pembacaan suhu.",
+        "Sehubungan dengan hal tersebut, kami mengajukan permohonan pengadaan sebanyak 3 (tiga) unit termometer digital medis terkalibrasi guna mendukung kelancaran asuhan keperawatan di Instalasi Rawat Inap.",
+        "Demikian nota dinas ini kami sampaikan. Atas perhatian dan perkenan Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "signerName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+      "signerTitle": "Direktur RSUD R.T. Notopuro",
+      "signerNip": "19691203 199803 1 002",
+      "rawPrompt": "Buatkan nota dinas permohonan pengadaan 3 unit termometer digital untuk ruang rawat inap",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "027 / Pengadaan Perlengkapan & Alat Kesehatan",
+        "unitPengusul": "Instalasi Rawat Inap",
+        "tujuanSurat": "Direktur melalui Wadir Umum & Keuangan",
+        "perihal": "Permohonan Pengadaan 3 Unit Termometer Digital Ruang Rawat Inap",
+        "urgensi": "Penting",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [
+          "3 unit termometer digital"
+        ]
+      },
+      "status": "Draft",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "current",
+          "note": "Draf siap diajukan ke Kepala Instalasi."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "pending"
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-101",
+          "draftId": "drf-2026-001",
+          "draftNumber": "[Draf Awal]",
+          "draftSubject": "Permohonan Pengadaan 3 Unit Termometer Digital Ruang Rawat Inap",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Membuat Draf via Intent-to-Draft",
+          "fromStatus": "-",
+          "toStatus": "Draft",
+          "note": "Draf awal selesai disusun dan siap diajukan ke Kepala Instalasi.",
+          "timestamp": "17 Nov 2026 · 08:30 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 08:30",
+      "updatedAt": "17 Nov 2026 · 08:32"
+    },
+    {
+      "id": "drf-2026-002",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "027",
+      "proposingUnit": "Instalasi Rawat Inap",
+      "recipient": "Direktur RSUD R.T. Notopuro melalui Wakil Direktur Pelayanan",
+      "sender": "Kepala Instalasi Rawat Inap",
+      "subject": "Usulan Pemeliharaan & Kalibrasi 4 Unit Monitor Pasien Ruang ICU/Ranap",
+      "urgency": "Segera",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas daftar aset",
+      "bodyParagraphs": [
+        "Dengan hormat, menindaklanjuti jadwal pemeliharaan alat elektromedik triwulan IV, bersama ini kami ajukan permohonan kalibrasi ulang terhadap 4 (empat) unit bedside patient monitor pada Instalasi Rawat Inap.",
+        "Langkah kalibrasi ini diperlukan untuk memastikan akurasi pembacaan saturasi oksigen dan tekanan darah pasien sesuai standar keselamatan rumah sakit.",
+        "Demikian permohonan ini kami sampaikan. Atas perhatian dan persetujuan Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "signerName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+      "signerTitle": "Direktur RSUD R.T. Notopuro",
+      "signerNip": "19691203 199803 1 002",
+      "rawPrompt": "Buatkan nota dinas usulan kalibrasi 4 unit monitor pasien ruang rawat inap",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "027 / Pemeliharaan Alat Medik",
+        "unitPengusul": "Instalasi Rawat Inap",
+        "tujuanSurat": "Direktur melalui Wadir Pelayanan",
+        "perihal": "Usulan Pemeliharaan & Kalibrasi 4 Unit Monitor Pasien Ruang ICU/Ranap",
+        "urgensi": "Segera",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [
+          "4 unit monitor pasien"
+        ]
+      },
+      "status": "Menunggu Paraf Instalasi",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 08:30 WIB",
+          "note": "Draf disusun dan diajukan melalui Intent-to-Draft."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Inap",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "current",
+          "note": "Menunggu Paraf Teknis Tahap 1."
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-201",
+          "draftId": "drf-2026-002",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Usulan Pemeliharaan & Kalibrasi 4 Unit Monitor Pasien Ruang ICU/Ranap",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Ajukan ke Instalasi",
+          "fromStatus": "Draft",
+          "toStatus": "Menunggu Paraf Instalasi",
+          "note": "Mohon tinjauan teknis dari Ibu Kepala Instalasi.",
+          "timestamp": "17 Nov 2026 · 08:45 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 08:40",
+      "updatedAt": "17 Nov 2026 · 08:45"
+    },
+    {
+      "id": "drf-2026-003",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Surat Undangan",
+      "classificationCode": "005",
+      "proposingUnit": "Instalasi Rawat Jalan",
+      "recipient": "Seluruh Kepala Instalasi dan Ketua Pokja Akreditasi RSUD R.T. Notopuro",
+      "sender": "Wakil Direktur Pelayanan & Penunjang",
+      "subject": "Undangan Rapat Koordinasi Persiapan Survei Akreditasi Pokja PPI",
+      "urgency": "Segera",
+      "dateStr": "17 November 2026",
+      "attachment": "-",
+      "bodyParagraphs": [
+        "Dengan hormat, menindaklanjuti jadwal evaluasi mutu pelayanan serta kesiapan dokumen standar akreditasi rumah sakit triwulan IV tahun 2026, kami mengundang Bapak/Ibu untuk hadir pada rapat koordinasi yang akan diselenggarakan pada:",
+        "Mengingat pentingnya agenda penyelarasan bukti telusur tiap pokja, dimohon kehadiran Bapak/Ibu tepat pada waktunya dengan membawa laporan capaian unit masing-masing.",
+        "Demikian surat undangan ini kami sampaikan. Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "eventDetails": {
+        "hariTanggal": "Kamis, 19 November 2026",
+        "waktu": "09.00 WIB s.d. selesai",
+        "tempat": "Aula Pertemuan Lantai 3, Gedung Administrasi RSUD R.T. Notopuro",
+        "acara": "Rapat Koordinasi Kesiapan Akreditasi & Pencegahan Infeksi (PPI)"
+      },
+      "signerName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+      "signerTitle": "Direktur RSUD R.T. Notopuro",
+      "signerNip": "19691203 199803 1 002",
+      "rawPrompt": "Buatkan surat undangan rapat koordinasi persiapan akreditasi hari Kamis jam 9 pagi di Aula Lantai 3",
+      "extractedJson": {
+        "jenisSurat": "Surat Undangan",
+        "kodeKlasifikasi": "005 / Undangan Rapat Dinas",
+        "unitPengusul": "Instalasi Rawat Jalan",
+        "tujuanSurat": "Kepala Instalasi & Ketua Pokja Akreditasi",
+        "perihal": "Undangan Rapat Koordinasi Persiapan Survei Akreditasi Pokja PPI",
+        "urgensi": "Segera",
+        "templateTnd": "TND-UND-02 (Surat Undangan)",
+        "hariTanggal": "Kamis, 19 November 2026",
+        "waktu": "09.00 WIB",
+        "tempat": "Aula Pertemuan Lantai 3"
+      },
+      "status": "Menunggu Paraf Kabid",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Jalan",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 08:30 WIB",
+          "note": "Draf disusun dan diajukan melalui Intent-to-Draft."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Jalan",
+          "officialName": "dr. Aditya Mahendra, Sp.A.",
+          "officialNip": "19831104 201101 1 007",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 09:05 WIB",
+          "note": "Paraf Teknis 1 disetujui. Kebutuhan operasional valid."
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "current",
+          "note": "Menunggu Paraf Struktural Tahap 2."
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-301",
+          "draftId": "drf-2026-003",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Undangan Rapat Koordinasi Persiapan Survei Akreditasi Pokja PPI",
+          "actorName": "Rizky Pratama, A.Md.Kep.",
+          "actorNip": "19940312 202012 1 004",
+          "actorRole": "Staf Pengusul",
+          "action": "Ajukan ke Instalasi",
+          "fromStatus": "Draft",
+          "toStatus": "Menunggu Paraf Instalasi",
+          "timestamp": "17 Nov 2026 · 08:10 WIB"
+        },
+        {
+          "id": "aud-302",
+          "draftId": "drf-2026-003",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Undangan Rapat Koordinasi Persiapan Survei Akreditasi Pokja PPI",
+          "actorName": "dr. Aditya Mahendra, Sp.A.",
+          "actorNip": "19831104 201101 1 007",
+          "actorRole": "Kepala Instalasi",
+          "action": "Paraf Teknis Disetujui",
+          "fromStatus": "Menunggu Paraf Instalasi",
+          "toStatus": "Menunggu Paraf Kabid",
+          "note": "Materi undangan Pokja PPI sudah sesuai jadwal akreditasi.",
+          "timestamp": "17 Nov 2026 · 09:05 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 08:05",
+      "updatedAt": "17 Nov 2026 · 09:05"
+    },
+    {
+      "id": "drf-2026-004",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Surat Permohonan",
+      "classificationCode": "440",
+      "proposingUnit": "Instalasi Gawat Darurat (IGD)",
+      "recipient": "Kepala Balai Pengamanan Fasilitas Kesehatan (BPFK) Regional",
+      "sender": "Direktur RSUD R.T. Notopuro",
+      "subject": "Permohonan Kalibrasi 5 Unit Ventilator Ruang Resusitasi IGD",
+      "urgency": "Segera",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas daftar nomor seri ventilator",
+      "bodyParagraphs": [
+        "Dengan hormat, dalam rangka memastikan kesiapsiagaan pelayanan kegawatdaruratan medik serta memenuhi persyaratan uji laik fungsi alat kesehatan, bersama ini kami mengajukan permohonan pengujian dan kalibrasi terhadap 5 (lima) unit ventilator mekanik pada Instalasi Gawat Darurat.",
+        "Adapun jadwal pelaksanaan kalibrasi dapat dikoordinasikan langsung dengan Kepala Instalasi Gawat Darurat dan IPSRS RSUD R.T. Notopuro agar tidak mengganggu layanan pasien.",
+        "Demikian permohonan ini kami sampaikan. Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih."
+      ],
+      "signerName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+      "signerTitle": "Direktur RSUD R.T. Notopuro",
+      "signerNip": "19691203 199803 1 002",
+      "rawPrompt": "Buatkan surat permohonan kalibrasi 5 unit ventilator IGD kepada Balai Pengamanan Fasilitas Kesehatan",
+      "extractedJson": {
+        "jenisSurat": "Surat Permohonan",
+        "kodeKlasifikasi": "440 / Kesehatan & Fasilitas Medik",
+        "unitPengusul": "Instalasi Gawat Darurat (IGD)",
+        "tujuanSurat": "Kepala BPFK Regional",
+        "perihal": "Permohonan Kalibrasi 5 Unit Ventilator Ruang Resusitasi IGD",
+        "urgensi": "Segera",
+        "templateTnd": "TND-SP-04 (Surat Permohonan)",
+        "entitasItem": [
+          "5 unit ventilator"
+        ]
+      },
+      "status": "Menunggu Verifikasi Wadir",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Gawat Darurat (IGD)",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 08:30 WIB",
+          "note": "Draf disusun dan diajukan melalui Intent-to-Draft."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Gawat Darurat (IGD)",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 09:05 WIB",
+          "note": "Paraf Teknis 1 disetujui. Kebutuhan operasional valid."
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 10:15 WIB",
+          "note": "Paraf Struktural 2 disetujui sesuai program bidang."
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "current",
+          "note": "Menunggu Verifikasi Kebijakan Wadir."
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-401",
+          "draftId": "drf-2026-004",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Permohonan Kalibrasi 5 Unit Ventilator Ruang Resusitasi IGD",
+          "actorName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "actorNip": "19850719 201001 2 011",
+          "actorRole": "Kepala Instalasi",
+          "action": "Paraf Teknis Disetujui",
+          "fromStatus": "Menunggu Paraf Instalasi",
+          "toStatus": "Menunggu Paraf Kabid",
+          "timestamp": "17 Nov 2026 · 09:10 WIB"
+        },
+        {
+          "id": "aud-402",
+          "draftId": "drf-2026-004",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Permohonan Kalibrasi 5 Unit Ventilator Ruang Resusitasi IGD",
+          "actorName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "actorNip": "19780421 200604 1 009",
+          "actorRole": "Kepala Bidang",
+          "action": "Paraf Struktural Disetujui",
+          "fromStatus": "Menunggu Paraf Kabid",
+          "toStatus": "Menunggu Verifikasi Wadir",
+          "note": "Anggaran kalibrasi tersedia pada pos pemeliharaan alat medik.",
+          "timestamp": "17 Nov 2026 · 10:15 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 08:15",
+      "updatedAt": "17 Nov 2026 · 10:15"
+    },
+    {
+      "id": "drf-2026-005",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": false,
+      "letterType": "Surat Tugas",
+      "classificationCode": "090",
+      "proposingUnit": "Instalasi Gawat Darurat (IGD)",
+      "recipient": "Tim Perawat Kegawatdaruratan IGD RSUD R.T. Notopuro",
+      "sender": "Direktur RSUD R.T. Notopuro",
+      "subject": "Penugasan Pelatihan Basic Trauma Cardiac Life Support (BTCLS)",
+      "urgency": "Biasa",
+      "dateStr": "17 November 2026",
+      "attachment": "1 (satu) berkas jadwal pelatihan",
+      "bodyParagraphs": [
+        "Dalam rangka peningkatan kompetensi klinis tenaga keperawatan pada Instalasi Gawat Darurat, Direktur RSUD R.T. Notopuro menugaskan kepada 2 (dua) orang perawat pelaksana IGD untuk mengikuti Pelatihan Kegawatdaruratan BTCLS Terakreditasi.",
+        "Penugasan dilaksanakan selama 3 (tiga) hari kerja terhitung mulai tanggal 24 s.d. 26 November 2026 bertempat di Pusat Pelatihan Kesehatan Daerah.",
+        "Setelah menyelesaikan penugasan, pegawai yang bersangkutan wajib menyampaikan laporan hasil kegiatan serta salinan sertifikat kepada Bagian Sumber Daya Manusia selambat-lambatnya 5 (lima) hari kerja setelah kembali."
+      ],
+      "signerName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+      "signerTitle": "Direktur RSUD R.T. Notopuro",
+      "signerNip": "19691203 199803 1 002",
+      "rawPrompt": "Buatkan surat tugas untuk 2 perawat IGD mengikuti pelatihan BTCLS selama 3 hari",
+      "extractedJson": {
+        "jenisSurat": "Surat Tugas",
+        "kodeKlasifikasi": "090 / Perjalanan Dinas & Diklat",
+        "unitPengusul": "Instalasi Gawat Darurat (IGD)",
+        "tujuanSurat": "2 Perawat Pelaksana IGD",
+        "perihal": "Penugasan Pelatihan Basic Trauma Cardiac Life Support (BTCLS)",
+        "urgensi": "Biasa",
+        "templateTnd": "TND-ST-03 (Surat Tugas)"
+      },
+      "status": "Menunggu TTE Direktur",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Gawat Darurat (IGD)",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 08:30 WIB",
+          "note": "Draf disusun dan diajukan melalui Intent-to-Draft."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Gawat Darurat (IGD)",
+          "officialName": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+          "officialNip": "19850719 201001 2 011",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 09:05 WIB",
+          "note": "Paraf Teknis 1 disetujui. Kebutuhan operasional valid."
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 10:15 WIB",
+          "note": "Paraf Struktural 2 disetujui sesuai program bidang."
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 11:20 WIB",
+          "note": "Verifikasi kebijakan strategis selesai. Teruskan ke Direktur."
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "current",
+          "note": "Menunggu Tanda Tangan Elektronik (TTE) Direktur."
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-501",
+          "draftId": "drf-2026-005",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Penugasan Pelatihan Basic Trauma Cardiac Life Support (BTCLS)",
+          "actorName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "actorNip": "19780421 200604 1 009",
+          "actorRole": "Kepala Bidang",
+          "action": "Paraf Struktural Disetujui",
+          "fromStatus": "Menunggu Paraf Kabid",
+          "toStatus": "Menunggu Verifikasi Wadir",
+          "timestamp": "17 Nov 2026 · 10:00 WIB"
+        },
+        {
+          "id": "aud-502",
+          "draftId": "drf-2026-005",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Penugasan Pelatihan Basic Trauma Cardiac Life Support (BTCLS)",
+          "actorName": "drg. Kartika Sari, MARS.",
+          "actorNip": "19740109 200212 2 004",
+          "actorRole": "Wakil Direktur",
+          "action": "Verifikasi Kebijakan Disetujui",
+          "fromStatus": "Menunggu Verifikasi Wadir",
+          "toStatus": "Menunggu TTE Direktur",
+          "note": "Jadwal rotasi jaga IGD selama pelatihan telah diamankan. Siap TTE Direktur.",
+          "timestamp": "17 Nov 2026 · 11:20 WIB"
+        }
+      ],
+      "createdAt": "17 Nov 2026 · 07:50",
+      "updatedAt": "17 Nov 2026 · 11:20"
+    },
+    {
+      "id": "drf-2026-006",
+      "creatorId": "usr-staf",
+      "letterNumber": "[Menunggu Nomor Resmi TU]",
+      "officialNumberAssigned": false,
+      "tteSigned": true,
+      "letterType": "Surat Edaran",
+      "classificationCode": "440",
+      "proposingUnit": "Instalasi Rawat Jalan",
+      "recipient": "Seluruh Kepala Instalasi, Kepala Bidang, dan Pegawai RSUD R.T. Notopuro",
+      "sender": "Direktur RSUD R.T. Notopuro",
+      "subject": "Kewajiban Kepatuhan Pengisian Rekam Medis Elektronik (e-RM) Maksimal 1x24 Jam",
+      "urgency": "Penting",
+      "dateStr": "17 November 2026",
+      "attachment": "-",
+      "bodyParagraphs": [
+        "Dalam rangka menertibkan tata kelola administrasi pelayanan klinis dan memenuhi indikator mutu nasional rumah sakit, seluruh Dokter Penanggung Jawab Pelayanan (DPJP) dan tenaga kesehatan diwajibkan melengkapi pengisian Rekam Medis Elektronik (e-RM) selambat-lambatnya 1x24 jam setelah pelayanan pasien.",
+        "Setiap Kepala Instalasi dan Kepala Bidang agar melakukan pemantauan kepatuhan mingguan melalui dasbor SIMRS dan melaporkan kendala teknis kepada Instalasi Rekam Medis.",
+        "Demikian surat edaran ini disampaikan untuk dilaksanakan dengan penuh tanggung jawab."
+      ],
+      "signerName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+      "signerTitle": "Direktur RSUD R.T. Notopuro",
+      "signerNip": "19691203 199803 1 002",
+      "rawPrompt": "Buatkan surat edaran internal mengenai kewajiban kepatuhan input rekam medis elektronik e-RM maksimal 1x24 jam",
+      "extractedJson": {
+        "jenisSurat": "Surat Edaran",
+        "kodeKlasifikasi": "440 / Ketentuan Internal RSUD",
+        "unitPengusul": "Instalasi Rawat Jalan",
+        "tujuanSurat": "Seluruh Instalasi & Bidang RSUD",
+        "perihal": "Kewajiban Kepatuhan Pengisian Rekam Medis Elektronik (e-RM) Maksimal 1x24 Jam",
+        "urgensi": "Penting",
+        "templateTnd": "TND-SE-05 (Surat Edaran)"
+      },
+      "status": "Selesai / Terbit",
+      "complianceScore": 100,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Rawat Jalan",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 08:30 WIB",
+          "note": "Draf disusun dan diajukan melalui Intent-to-Draft."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Rawat Jalan",
+          "officialName": "dr. Aditya Mahendra, Sp.A.",
+          "officialNip": "19831104 201101 1 007",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 09:05 WIB",
+          "note": "Paraf Teknis 1 disetujui. Kebutuhan operasional valid."
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 10:15 WIB",
+          "note": "Paraf Struktural 2 disetujui sesuai program bidang."
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 11:20 WIB",
+          "note": "Verifikasi kebijakan strategis selesai. Teruskan ke Direktur."
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "completed",
+          "timestamp": "17 Nov 2026 · 13:10 WIB",
+          "note": "Ditandatangani secara elektronik (TTE BSrE/BSSN)."
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "current",
+          "note": "Siap registrasi nomor surat resmi & pengarsipan."
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-601",
+          "draftId": "drf-2026-006",
+          "draftNumber": "[Menunggu Nomor Resmi TU]",
+          "draftSubject": "Kewajiban Kepatuhan Pengisian Rekam Medis Elektronik (e-RM) Maksimal 1x24 Jam",
+          "actorName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "actorNip": "19691203 199803 1 002",
+          "actorRole": "Direktur",
+          "action": "Tanda Tangan Elektronik (TTE)",
+          "fromStatus": "Menunggu TTE Direktur",
+          "toStatus": "Selesai / Terbit",
+          "note": "Disahkan dengan sertifikat elektronik BSrE/BSSN. Diteruskan ke Tata Usaha untuk penomoran resmi.",
+          "timestamp": "17 Nov 2026 · 13:10 WIB"
+        }
+      ],
+      "createdAt": "16 Nov 2026 · 14:20",
+      "updatedAt": "17 Nov 2026 · 13:10"
+    },
+    {
+      "id": "drf-2026-007",
+      "creatorId": "usr-staf",
+      "letterNumber": "027/099/RSUD-RTN/XI/2026",
+      "officialNumberAssigned": true,
+      "tteSigned": false,
+      "letterType": "Nota Dinas",
+      "classificationCode": "027",
+      "proposingUnit": "Instalasi Farmasi",
+      "recipient": "Kepala Bagian Umum & Pengadaan RSUD R.T. Notopuro",
+      "sender": "Kepala Instalasi Farmasi",
+      "subject": "Permohonan Perbaikan Sistem Pendingin Gudang Obat",
+      "urgency": "Segera",
+      "dateStr": "16 November 2026",
+      "attachment": "1 (satu) lembar berita acara kerusakan",
+      "bodyParagraphs": [
+        "Dengan hormat, kami informasikan bahwa nomer seri unit pendingin utama pada Gudang Penyimpanan Obat Khusus mengalami gangguan kompresor sehingga suhu ruangan naik di atas ambang batas standar.",
+        "Agar kwalitas sediaan farmasi tetap terjaga sesuai standar akreditasi apotik rumah sakit, kami mohon dapat dilakukan pemeriksaan dan perbaikan sistim pendingin tersebut sesegera mungkin.",
+        "Demikian nota dinas ini disampaikan, atas perhatian dan tindak lanjutnya kami ucapkan terimakasih."
+      ],
+      "signerName": "apt. Lestari Wulandari, S.Farm, M.Farm",
+      "signerTitle": "Kepala Instalasi Farmasi",
+      "signerNip": "1986022820121220",
+      "rawPrompt": "Buatkan nota dinas permintaan perbaikan AC gudang obat instalasi farmasi karena suhu naik",
+      "extractedJson": {
+        "jenisSurat": "Nota Dinas",
+        "kodeKlasifikasi": "027 / Pemeliharaan Sarana",
+        "unitPengusul": "Instalasi Farmasi",
+        "tujuanSurat": "Kepala Bagian Umum & Pengadaan",
+        "perihal": "Permohonan Perbaikan Sistem Pendingin Gudang Obat",
+        "urgensi": "Segera",
+        "templateTnd": "TND-ND-01 (Nota Dinas Internal)",
+        "entitasItem": [
+          "Unit pendingin gudang obat"
+        ]
+      },
+      "status": "Ditolak",
+      "complianceScore": 68,
+      "parafFlow": [
+        {
+          "order": 1,
+          "roleId": "staf",
+          "roleLabel": "Staf Pengusul",
+          "unitName": "Instalasi Farmasi",
+          "officialName": "Rizky Pratama, A.Md.Kep.",
+          "officialNip": "19940312 202012 1 004",
+          "status": "current",
+          "note": "Draf siap diajukan ke Kepala Instalasi."
+        },
+        {
+          "order": 2,
+          "roleId": "ka_instalasi",
+          "roleLabel": "Kepala Instalasi / Unit",
+          "unitName": "Instalasi Farmasi",
+          "officialName": "apt. Lestari Wulandari, S.Farm., M.Farm.",
+          "officialNip": "19860228 201212 2 003",
+          "status": "rejected"
+        },
+        {
+          "order": 3,
+          "roleId": "kabid",
+          "roleLabel": "Kepala Bagian / Bidang",
+          "unitName": "Bidang Pelayanan Medik",
+          "officialName": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+          "officialNip": "19780421 200604 1 009",
+          "status": "pending"
+        },
+        {
+          "order": 4,
+          "roleId": "wadir",
+          "roleLabel": "Wakil Direktur",
+          "unitName": "Direktorat Pelayanan",
+          "officialName": "drg. Kartika Sari, MARS.",
+          "officialNip": "19740109 200212 2 004",
+          "status": "pending"
+        },
+        {
+          "order": 5,
+          "roleId": "direktur",
+          "roleLabel": "Direktur (TTE Final)",
+          "unitName": "Direktorat RSUD R.T. Notopuro",
+          "officialName": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+          "officialNip": "19691203 199803 1 002",
+          "status": "pending"
+        },
+        {
+          "order": 6,
+          "roleId": "arsiparis",
+          "roleLabel": "Tata Usaha / Arsiparis",
+          "unitName": "Bagian Tata Usaha & Sekretariat",
+          "officialName": "Siti Aminah, S.Sos.",
+          "officialNip": "19810614 200801 2 015",
+          "status": "pending"
+        }
+      ],
+      "auditTrail": [
+        {
+          "id": "aud-701",
+          "draftId": "drf-2026-007",
+          "draftNumber": "027/099/RSUD-RTN/XI/2026",
+          "draftSubject": "Permohonan Perbaikan Sistem Pendingin Gudang Obat",
+          "actorName": "apt. Lestari Wulandari, S.Farm., M.Farm.",
+          "actorNip": "19860228 201212 2 003",
+          "actorRole": "Kepala Instalasi",
+          "action": "Tolak / Kembalikan ke Pengusul",
+          "fromStatus": "Menunggu Paraf Instalasi",
+          "toStatus": "Ditolak",
+          "note": "Terdapat beberapa kata tidak baku (nomer, kwalitas, apotik, terimakasih) & NIP belum 18 digit. Silakan perbaiki di Biromatic Guard lalu ajukan kembali.",
+          "timestamp": "16 Nov 2026 · 16:05 WIB"
+        }
+      ],
+      "createdAt": "16 Nov 2026 · 15:30",
+      "updatedAt": "16 Nov 2026 · 16:05"
+    }
+  ],
+  "sotkRules": [
+    {
+      "id": "sotk-1",
+      "originUnit": "Instalasi Rawat Inap",
+      "unitType": "Fungsional",
+      "paraf1Role": "Ka. Instalasi Rawat Inap",
+      "paraf2Role": "Kabid Pelayanan Medik",
+      "wadirRole": "Wadir Pelayanan & Penunjang",
+      "finalSigner": "Direktur RSUD",
+      "isActive": true
+    },
+    {
+      "id": "sotk-2",
+      "originUnit": "Instalasi Rawat Jalan",
+      "unitType": "Fungsional",
+      "paraf1Role": "Ka. Instalasi Rawat Jalan",
+      "paraf2Role": "Kabid Pelayanan Medik",
+      "wadirRole": "Wadir Pelayanan & Penunjang",
+      "finalSigner": "Direktur RSUD",
+      "isActive": true
+    },
+    {
+      "id": "sotk-3",
+      "originUnit": "Instalasi Gawat Darurat (IGD)",
+      "unitType": "Fungsional",
+      "paraf1Role": "Ka. Instalasi Gawat Darurat",
+      "paraf2Role": "Kabid Pelayanan Medik",
+      "wadirRole": "Wadir Pelayanan & Penunjang",
+      "finalSigner": "Direktur RSUD",
+      "isActive": true
+    },
+    {
+      "id": "sotk-4",
+      "originUnit": "Instalasi Farmasi",
+      "unitType": "Fungsional",
+      "paraf1Role": "Ka. Instalasi Farmasi",
+      "paraf2Role": "Kabid Pelayanan Medik",
+      "wadirRole": "Wadir Pelayanan & Penunjang",
+      "finalSigner": "Direktur RSUD",
+      "isActive": true
+    },
+    {
+      "id": "sotk-5",
+      "originUnit": "Instalasi IPSRS",
+      "unitType": "Fungsional",
+      "paraf1Role": "Ka. Instalasi IPSRS",
+      "paraf2Role": "Kabag Umum & Pengadaan",
+      "wadirRole": "Wadir Umum & Keuangan",
+      "finalSigner": "Direktur RSUD",
+      "isActive": true
+    }
+  ],
+  "templates": [
+    {
+      "id": "tpl-nd",
+      "letterType": "Nota Dinas",
+      "templateCode": "TND-ND-01",
+      "classificationCode": "027 / 445",
+      "paperSize": "F4 (215 × 330 mm)",
+      "margins": "Atas 2,5 cm · Kiri 3,0 cm · Kanan 2,0 cm · Bawah 2,5 cm",
+      "fontSpec": "Arial / Public Sans 11 pt · Spasi 1,15",
+      "description": "Naskah dinas internal antarpejabat di lingkungan RSUD untuk penyampaian usulan pengadaan, laporan operasional, atau koordinasi teknis unit.",
+      "requiredElements": [
+        "Kop Surat RSUD Pemerintah",
+        "Judul \"NOTA DINAS\" rata tengah huruf kapital",
+        "Blok Kepala: Kepada, Dari, Tanggal, Nomor, Sifat, Lampiran, Hal",
+        "Paragraf Pembuka, Pokok Usulan, dan Penutup EYD V",
+        "Blok Tanda Tangan & NIP Pejabat Pengusul"
+      ],
+      "samplePrompt": "Buatkan nota dinas permohonan pengadaan 3 unit termometer digital untuk ruang rawat inap"
+    },
+    {
+      "id": "tpl-und",
+      "letterType": "Surat Undangan",
+      "templateCode": "TND-UND-02",
+      "classificationCode": "005",
+      "paperSize": "A4 (210 × 297 mm)",
+      "margins": "Atas 2,5 cm · Kiri 3,0 cm · Kanan 2,0 cm · Bawah 2,5 cm",
+      "fontSpec": "Arial / Public Sans 11 pt · Spasi 1,15",
+      "description": "Naskah dinas pemberitahuan resmi kepada pejabat internal atau lintas instansi untuk menghadiri rapat koordinasi, evaluasi mutu, atau sosialisasi.",
+      "requiredElements": [
+        "Kop Surat Resmi RSUD",
+        "Nomor, Sifat, Lampiran, Hal di kiri atas & Tanggal di kanan",
+        "Alamat Tujuan (Yth.) dengan format baku",
+        "Rincian Hari/Tanggal, Pukul, Tempat, dan Acara",
+        "Blok Tanda Tangan Pejabat Berwenang + Tembusan"
+      ],
+      "samplePrompt": "Buatkan surat undangan rapat koordinasi persiapan akreditasi Pokja PPI hari Kamis pukul 09.00 WIB di Aula Lantai 3"
+    },
+    {
+      "id": "tpl-st",
+      "letterType": "Surat Tugas",
+      "templateCode": "TND-ST-03",
+      "classificationCode": "090 / 800",
+      "paperSize": "F4 (215 × 330 mm)",
+      "margins": "Atas 2,5 cm · Kiri 3,0 cm · Kanan 2,0 cm · Bawah 2,5 cm",
+      "fontSpec": "Bookman Old Style / Serif 11 pt · Spasi 1,15",
+      "description": "Naskah dinas penugasan resmi dari pimpinan RSUD kepada pegawai/tim medis untuk melaksanakan diklat, pendampingan, atau tugas kedinasan.",
+      "requiredElements": [
+        "Kop Surat Resmi RSUD",
+        "Judul \"SURAT TUGAS\" dan Nomor Surat",
+        "Konsiderans Dasar & Kepada (Daftar Pegawai + NIP)",
+        "Uraian \"Untuk\" berisi tujuan, waktu, dan lokasi penugasan",
+        "Kewajiban pelaporan hasil tugas & TTD Direktur/Wadir"
+      ],
+      "samplePrompt": "Buatkan surat tugas untuk 2 perawat IGD mengikuti pelatihan kegawatdaruratan BTCLS selama 3 hari di Bandung"
+    },
+    {
+      "id": "tpl-sp",
+      "letterType": "Surat Permohonan",
+      "templateCode": "TND-SP-04",
+      "classificationCode": "440 / 027",
+      "paperSize": "A4 (210 × 297 mm)",
+      "margins": "Atas 2,5 cm · Kiri 3,0 cm · Kanan 2,0 cm · Bawah 2,5 cm",
+      "fontSpec": "Arial / Public Sans 11 pt · Spasi 1,15",
+      "description": "Surat resmi pengajuan kalibrasi alat kesehatan, pemeliharaan sarana, atau permohonan dukungan teknis kepada pihak eksternal/Dinas Kesehatan.",
+      "requiredElements": [
+        "Kop Surat Resmi RSUD",
+        "Nomor, Sifat, Lampiran, dan Perihal Permohonan",
+        "Tujuan Instansi/Mitra Eksternal",
+        "Latar Belakang Teknis & Daftar Kebutuhan",
+        "Blok Tanda Tangan Direktur RSUD"
+      ],
+      "samplePrompt": "Buatkan surat permohonan kalibrasi 5 unit ventilator ICU dan alat EKG kepada Balai Pengamanan Fasilitas Kesehatan"
+    },
+    {
+      "id": "tpl-se",
+      "letterType": "Surat Edaran",
+      "templateCode": "TND-SE-05",
+      "classificationCode": "440 / 000",
+      "paperSize": "F4 (215 × 330 mm)",
+      "margins": "Atas 2,5 cm · Kiri 3,0 cm · Kanan 2,0 cm · Bawah 2,5 cm",
+      "fontSpec": "Bookman Old Style / Serif 11 pt · Spasi 1,15",
+      "description": "Naskah dinas pemberitahuan kebijakan internal rumah sakit yang berlaku bagi seluruh instalasi, bidang, dan staf pelayanan.",
+      "requiredElements": [
+        "Kop Surat Resmi RSUD",
+        "Judul \"SURAT EDARAN\", Nomor, dan Tentang",
+        "Latar Belakang Kebijakan & Dasar Hukum",
+        "Poin Ketentuan Pelaksanaan Operasional",
+        "Penetapan Tanggal & Tanda Tangan Direktur"
+      ],
+      "samplePrompt": "Buatkan surat edaran internal mengenai kewajiban kepatuhan input rekam medis elektronik e-RM maksimal 1x24 jam di seluruh poliklinik"
+    }
+  ],
+  "officials": [
+    {
+      "id": "off-1",
+      "name": "Rizky Pratama",
+      "fullNameWithTitles": "Rizky Pratama, A.Md.Kep.",
+      "nip": "19940312 202012 1 004",
+      "rank": "Pengatur Tk. I / II.d",
+      "position": "Staf Administrasi Ruang Rawat Inap",
+      "unitName": "Instalasi Rawat Inap",
+      "sotkLevel": 1,
+      "dutyStatus": "Definitif"
+    },
+    {
+      "id": "off-2",
+      "name": "Ratna Sari Dewi",
+      "fullNameWithTitles": "Ns. Ratna Sari Dewi, S.Kep., M.Kep.",
+      "nip": "19850719 201001 2 011",
+      "rank": "Penata Tk. I / III.d",
+      "position": "Kepala Instalasi Rawat Inap",
+      "unitName": "Instalasi Rawat Inap",
+      "sotkLevel": 2,
+      "dutyStatus": "Definitif",
+      "delegateName": "Ns. Dwi Anggraini, S.Kep.",
+      "delegateNip": "19890411 201402 2 005"
+    },
+    {
+      "id": "off-2b",
+      "name": "dr. Aditya Mahendra",
+      "fullNameWithTitles": "dr. Aditya Mahendra, Sp.A.",
+      "nip": "19831104 201101 1 007",
+      "rank": "Pembina / IV.a",
+      "position": "Kepala Instalasi Rawat Jalan",
+      "unitName": "Instalasi Rawat Jalan",
+      "sotkLevel": 2,
+      "dutyStatus": "Definitif",
+      "delegateName": "dr. Nabila Kusuma",
+      "delegateNip": "19881022 201503 2 006"
+    },
+    {
+      "id": "off-2c",
+      "name": "Apt. Lestari Wulandari",
+      "fullNameWithTitles": "apt. Lestari Wulandari, S.Farm., M.Farm.",
+      "nip": "19860228 201212 2 003",
+      "rank": "Penata Tk. I / III.d",
+      "position": "Kepala Instalasi Farmasi",
+      "unitName": "Instalasi Farmasi",
+      "sotkLevel": 2,
+      "dutyStatus": "Definitif"
+    },
+    {
+      "id": "off-2d",
+      "name": "Fajar Nugroho",
+      "fullNameWithTitles": "Fajar Nugroho, S.T., M.T.",
+      "nip": "19870915 201403 1 002",
+      "rank": "Penata / III.c",
+      "position": "Kepala Instalasi Pemeliharaan Sarana RS (IPSRS)",
+      "unitName": "Instalasi IPSRS",
+      "sotkLevel": 2,
+      "dutyStatus": "Definitif"
+    },
+    {
+      "id": "off-3",
+      "name": "dr. Hendra Wijaya",
+      "fullNameWithTitles": "dr. Hendra Wijaya, Sp.PD., M.Kes.",
+      "nip": "19780421 200604 1 009",
+      "rank": "Pembina Tk. I / IV.b",
+      "position": "Kepala Bidang Pelayanan Medik & Keperawatan",
+      "unitName": "Bidang Pelayanan Medik",
+      "sotkLevel": 3,
+      "dutyStatus": "Definitif",
+      "delegateName": "dr. Rahmat Hidayat, MARS.",
+      "delegateNip": "19800512 200903 1 004"
+    },
+    {
+      "id": "off-3b",
+      "name": "Bambang Sutrisno",
+      "fullNameWithTitles": "H. Bambang Sutrisno, S.E., M.M.",
+      "nip": "19760811 200312 1 005",
+      "rank": "Pembina Tk. I / IV.b",
+      "position": "Kepala Bagian Umum & Pengadaan",
+      "unitName": "Bagian Umum & Pengadaan",
+      "sotkLevel": 3,
+      "dutyStatus": "Definitif"
+    },
+    {
+      "id": "off-4",
+      "name": "drg. Kartika Sari",
+      "fullNameWithTitles": "drg. Kartika Sari, MARS.",
+      "nip": "19740109 200212 2 004",
+      "rank": "Pembina Utama Muda / IV.c",
+      "position": "Wakil Direktur Pelayanan & Penunjang",
+      "unitName": "Direktorat Pelayanan",
+      "sotkLevel": 4,
+      "dutyStatus": "Definitif"
+    },
+    {
+      "id": "off-4b",
+      "name": "Suryo Pranoto",
+      "fullNameWithTitles": "Drs. Suryo Pranoto, M.Si.",
+      "nip": "19720517 199903 1 008",
+      "rank": "Pembina Utama Muda / IV.c",
+      "position": "Wakil Direktur Umum & Keuangan",
+      "unitName": "Direktorat Umum & Keuangan",
+      "sotkLevel": 4,
+      "dutyStatus": "Definitif"
+    },
+    {
+      "id": "off-5",
+      "name": "Dr. dr. Aris Munandar",
+      "fullNameWithTitles": "Dr. dr. Aris Munandar, Sp.B., MARS.",
+      "nip": "19691203 199803 1 002",
+      "rank": "Pembina Utama Madya / IV.d",
+      "position": "Direktur RSUD R.T. Notopuro",
+      "unitName": "Direktorat RSUD R.T. Notopuro",
+      "sotkLevel": 5,
+      "dutyStatus": "Definitif",
+      "delegateName": "drg. Kartika Sari, MARS.",
+      "delegateNip": "19740109 200212 2 004"
+    }
+  ],
+  "classifications": [
+    {
+      "code": "000",
+      "category": "Umum",
+      "description": "Tata Usaha, Persuratan Umum, & Kerumahtanggaan"
+    },
+    {
+      "code": "005",
+      "category": "Undangan",
+      "description": "Undangan Rapat Dinas, Koordinasi, & Pertemuan Resmi"
+    },
+    {
+      "code": "027",
+      "category": "Pengadaan",
+      "description": "Pengadaan Barang/Jasa, Alat Kesehatan, & Pemeliharaan Sarana"
+    },
+    {
+      "code": "090",
+      "category": "Perjalanan Dinas",
+      "description": "Surat Tugas, Perjalanan Dinas Dalam/Luar Daerah, & Diklat"
+    },
+    {
+      "code": "440",
+      "category": "Kesehatan",
+      "description": "Kebijakan Pelayanan Kesehatan, Akreditasi, & Regulasi RS"
+    },
+    {
+      "code": "445",
+      "category": "Pelayanan RS",
+      "description": "Operasional Instalasi Medis, Keperawatan, Penunjang, & Rekam Medis"
+    },
+    {
+      "code": "800",
+      "category": "Kepegawaian",
+      "description": "Mutasi, Penugasan SDM, Cuti, Plt./Plh., & Pengembangan Kompetensi"
+    }
+  ]
+}

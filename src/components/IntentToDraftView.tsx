@@ -290,8 +290,15 @@ export const IntentToDraftView: React.FC<IntentToDraftViewProps> = ({
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setAiError(null);
     try {
       await onSubmitToInstallation(activeDraft);
+    } catch (err: unknown) {
+      setAiError(
+        err instanceof Error
+          ? err.message
+          : 'Gagal mengajukan draf ke alur paraf instalasi.'
+      );
     } finally {
       setIsSubmitting(false);
     }

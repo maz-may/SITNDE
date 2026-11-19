@@ -3,7 +3,7 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { GoogleGenAI, Type } from '@google/genai';
+import { GoogleGenAI, ThinkingLevel, Type } from '@google/genai';
 import {
   AlignmentType,
   BorderStyle,
@@ -132,7 +132,7 @@ app.post('/api/auth/login-nip', (req, res) => {
   );
   if (!matchedUser) {
     res.status(404).json({
-      error: `NIP ${req.body?.nip} tidak ditemukan pada database kepegawaian SIMRS RSUD Nusantara Jaya.`,
+      error: `NIP ${req.body?.nip} tidak ditemukan pada database kepegawaian SIMRS RSUD R.T. Notopuro.`,
     });
     return;
   }
@@ -171,13 +171,14 @@ app.post('/api/ai/intent-to-draft', async (req, res) => {
     const ai = new GoogleGenAI({
       apiKey,
       httpOptions: {
+        timeout: 12000,
         headers: {
           'User-Agent': 'aistudio-build',
         },
       },
     });
 
-    const systemInstruction = `Anda adalah Asisten Tata Naskah Dinas Cerdas (SITNDE) pada Rumah Sakit Umum Daerah (RSUD) Nusantara Jaya.
+    const systemInstruction = `Anda adalah Asisten Tata Naskah Dinas Cerdas (SITNDE) pada Rumah Sakit Umum Daerah (RSUD) R.T. Notopuro.
 Tugas Anda adalah mengubah instruksi bahasa sehari-hari dari pegawai menjadi struktur data JSON dan draf narasi surat dinas resmi yang patuh pada kaidah EYD V serta bahasa birokrasi pemerintahan yang lugas, sopan, dan baku.
 
 Aturan Ketat:
@@ -192,81 +193,111 @@ Aturan Ketat:
 Konteks Unit Pengusul: ${unitHint || creatorUser?.unitName || 'Instalasi Rawat Inap'}
 ${letterTypeHint ? `Preferensi Jenis Surat: ${letterTypeHint}` : ''}`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-4-hydrogen',
-      contents: fullUserPrompt,
-      config: {
-        systemInstruction,
-        responseMimeType: 'application/json',
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            jenisSurat: {
-              type: Type.STRING,
-              description:
-                'Salah satu dari: Nota Dinas, Surat Undangan, Surat Tugas, Surat Permohonan, Surat Edaran',
-            },
-            kodeKlasifikasi: {
-              type: Type.STRING,
-              description: 'Kode angka klasifikasi arsip 3 digit, misal 027, 005, 090, 440, 445',
-            },
-            klasifikasiKeterangan: {
-              type: Type.STRING,
-              description: 'Deskripsi singkat kode klasifikasi',
-            },
-            unitPengusul: {
-              type: Type.STRING,
-              description: 'Nama instalasi atau bagian pengusul di RSUD',
-            },
-            tujuanSurat: {
-              type: Type.STRING,
-              description: 'Jabatan pihak penerima surat',
-            },
-            perihal: {
-              type: Type.STRING,
-              description: 'Ringkasan perihal surat yang lugas dan formal',
-            },
-            urgensi: {
-              type: Type.STRING,
-              description: 'Salah satu dari: Biasa, Penting, Segera',
-            },
-            entitasItem: {
-              type: Type.ARRAY,
-              items: { type: Type.STRING },
-              description: 'Daftar item barang, jumlah, atau pihak yang disebutkan',
-            },
-            hariTanggal: {
-              type: Type.STRING,
-              description: 'Khusus undangan/tugas jika disebutkan, atau [Isi Hari/Tanggal]',
-            },
-            waktu: {
-              type: Type.STRING,
-              description: 'Khusus undangan jika disebutkan, atau [Isi Pukul]',
-            },
-            tempat: {
-              type: Type.STRING,
-              description: 'Khusus undangan jika disebutkan, atau [Isi Tempat]',
-            },
-            bodyParagraphs: {
-              type: Type.ARRAY,
-              items: { type: Type.STRING },
-              description: '3 paragraf resmi isi surat dinas berbahasa Indonesia baku EYD V',
-            },
+    const generationConfig = {
+      systemInstruction,
+      thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
+      responseMimeType: 'application/json',
+      responseSchema: {
+        type: Type.OBJECT,
+        properties: {
+          jenisSurat: {
+            type: Type.STRING,
+            description:
+              'Salah satu dari: Nota Dinas, Surat Undangan, Surat Tugas, Surat Permohonan, Surat Edaran',
           },
-          required: [
-            'jenisSurat',
-            'kodeKlasifikasi',
-            'unitPengusul',
-            'tujuanSurat',
-            'perihal',
-            'urgensi',
-            'bodyParagraphs',
-          ],
+          kodeKlasifikasi: {
+            type: Type.STRING,
+            description: 'Kode angka klasifikasi arsip 3 digit, misal 027, 005, 090, 440, 445',
+          },
+          klasifikasiKeterangan: {
+            type: Type.STRING,
+            description: 'Deskripsi singkat kode klasifikasi',
+          },
+          unitPengusul: {
+            type: Type.STRING,
+            description: 'Nama instalasi atau bagian pengusul di RSUD',
+          },
+          tujuanSurat: {
+            type: Type.STRING,
+            description: 'Jabatan pihak penerima surat',
+          },
+          perihal: {
+            type: Type.STRING,
+            description: 'Ringkasan perihal surat yang lugas dan formal',
+          },
+          urgensi: {
+            type: Type.STRING,
+            description: 'Salah satu dari: Biasa, Penting, Segera',
+          },
+          entitasItem: {
+            type: Type.ARRAY,
+            items: { type: Type.STRING },
+            description: 'Daftar item barang, jumlah, atau pihak yang disebutkan',
+          },
+          hariTanggal: {
+            type: Type.STRING,
+            description: 'Khusus undangan/tugas jika disebutkan, atau [Isi Hari/Tanggal]',
+          },
+          waktu: {
+            type: Type.STRING,
+            description: 'Khusus undangan jika disebutkan, atau [Isi Pukul]',
+          },
+          tempat: {
+            type: Type.STRING,
+            description: 'Khusus undangan jika disebutkan, atau [Isi Tempat]',
+          },
+          bodyParagraphs: {
+            type: Type.ARRAY,
+            items: { type: Type.STRING },
+            description: '3 paragraf resmi isi surat dinas berbahasa Indonesia baku EYD V',
+          },
         },
+        required: [
+          'jenisSurat',
+          'kodeKlasifikasi',
+          'unitPengusul',
+          'tujuanSurat',
+          'perihal',
+          'urgensi',
+          'bodyParagraphs',
+        ],
       },
-    });
+    };
 
-    const parsed = JSON.parse((response.text || '{}').trim());
+    const isTransientGeminiError = (err: unknown): boolean => {
+      const msg = err instanceof Error ? err.message : String(err);
+      return /503|504|429|UNAVAILABLE|DEADLINE_EXCEEDED|high demand|timed out|timeout|AbortError|ECONNRESET/i.test(
+        msg
+      );
+    };
+
+    let modelUsed: 'gemini-4-hydrogen' | 'gemini-3.1-flash-lite' =
+      'gemini-4-hydrogen';
+    let response;
+    try {
+      response = await ai.models.generateContent({
+        model: 'gemini-4-hydrogen',
+        contents: fullUserPrompt,
+        config: generationConfig,
+      });
+    } catch (primaryErr) {
+      if (!isTransientGeminiError(primaryErr)) {
+        throw primaryErr;
+      }
+      modelUsed = 'gemini-3.1-flash-lite';
+      response = await ai.models.generateContent({
+        model: 'gemini-3.1-flash-lite',
+        contents: fullUserPrompt,
+        config: generationConfig,
+      });
+    }
+
+    const rawJsonText = (response.text || '{}')
+      .trim()
+      .replace(/^```(?:json)?\s*/i, '')
+      .replace(/```$/i, '')
+      .trim();
+    const parsed = JSON.parse(rawJsonText) as Record<string, unknown>;
     const validTypes: LetterType[] = [
       'Nota Dinas',
       'Surat Undangan',
@@ -274,16 +305,33 @@ ${letterTypeHint ? `Preferensi Jenis Surat: ${letterTypeHint}` : ''}`;
       'Surat Permohonan',
       'Surat Edaran',
     ];
-    const letterType: LetterType = validTypes.includes(parsed.jenisSurat)
-      ? parsed.jenisSurat
+    const letterType: LetterType = validTypes.includes(
+      parsed.jenisSurat as LetterType
+    )
+      ? (parsed.jenisSurat as LetterType)
       : 'Nota Dinas';
 
     const validUrgency: UrgencyLevel[] = ['Biasa', 'Penting', 'Segera'];
-    const urgency: UrgencyLevel = validUrgency.includes(parsed.urgensi)
-      ? parsed.urgensi
+    const urgency: UrgencyLevel = validUrgency.includes(
+      parsed.urgensi as UrgencyLevel
+    )
+      ? (parsed.urgensi as UrgencyLevel)
       : 'Penting';
 
-    const proposingUnit = parsed.unitPengusul || unitHint || 'Instalasi Rawat Inap';
+    const proposingUnit =
+      (typeof parsed.unitPengusul === 'string' && parsed.unitPengusul.trim()) ||
+      unitHint ||
+      'Instalasi Rawat Inap';
+    const recipientText =
+      (typeof parsed.tujuanSurat === 'string' && parsed.tujuanSurat.trim()) ||
+      'Direktur RSUD R.T. Notopuro melalui Wakil Direktur Umum dan Keuangan';
+    const subjectText =
+      (typeof parsed.perihal === 'string' && parsed.perihal.trim()) ||
+      'Permohonan Tindak Lanjut Naskah Dinas';
+    const classificationDesc =
+      (typeof parsed.klasifikasiKeterangan === 'string' &&
+        parsed.klasifikasiKeterangan.trim()) ||
+      'Naskah Dinas RSUD';
     const classificationCode = String(parsed.kodeKlasifikasi || '027').slice(0, 3);
     const ts = formatNowTimestamp();
     const draftId = `drf-${Date.now()}`;
@@ -311,12 +359,37 @@ ${letterTypeHint ? `Preferensi Jenis Surat: ${letterTypeHint}` : ''}`;
     const eventDetails =
       letterType === 'Surat Undangan'
         ? {
-            hariTanggal: parsed.hariTanggal || '[Isi Hari/Tanggal Pelaksanaan]',
-            waktu: parsed.waktu || '[Isi Pukul Pelaksanaan]',
-            tempat: parsed.tempat || '[Isi Ruang/Tempat Rapat]',
-            acara: parsed.perihal,
+            hariTanggal:
+              (typeof parsed.hariTanggal === 'string' &&
+                parsed.hariTanggal.trim()) ||
+              '[Isi Hari/Tanggal Pelaksanaan]',
+            waktu:
+              (typeof parsed.waktu === 'string' && parsed.waktu.trim()) ||
+              '[Isi Pukul Pelaksanaan]',
+            tempat:
+              (typeof parsed.tempat === 'string' && parsed.tempat.trim()) ||
+              '[Isi Ruang/Tempat Rapat]',
+            acara: subjectText,
           }
         : undefined;
+
+    const parsedParagraphs = Array.isArray(parsed.bodyParagraphs)
+      ? parsed.bodyParagraphs.filter(
+          (p): p is string => typeof p === 'string' && p.trim().length > 0
+        )
+      : [];
+
+    const bodyParagraphs =
+      parsedParagraphs.length > 0
+        ? parsedParagraphs
+        : [
+            `Dengan hormat, sehubungan dengan ${subjectText}, bersama ini kami sampaikan permohonan tindak lanjut pada ${proposingUnit}.`,
+            `Demikian disampaikan. Atas perhatian Bapak/Ibu, kami ucapkan terima kasih.`,
+          ];
+
+    const entitasItem = Array.isArray(parsed.entitasItem)
+      ? parsed.entitasItem.filter((item): item is string => typeof item === 'string')
+      : undefined;
 
     const newDraft: LetterDraft = {
       id: draftId,
@@ -327,22 +400,16 @@ ${letterTypeHint ? `Preferensi Jenis Surat: ${letterTypeHint}` : ''}`;
       letterType,
       classificationCode,
       proposingUnit,
-      recipient: parsed.tujuanSurat,
+      recipient: recipientText,
       sender: `Kepala ${proposingUnit}`,
-      subject: parsed.perihal,
+      subject: subjectText,
       urgency,
       dateStr: '17 November 2026',
       attachment:
         letterType === 'Nota Dinas' || letterType === 'Surat Permohonan'
           ? '1 (satu) berkas'
           : '-',
-      bodyParagraphs:
-        Array.isArray(parsed.bodyParagraphs) && parsed.bodyParagraphs.length > 0
-          ? parsed.bodyParagraphs
-          : [
-              `Dengan hormat, sehubungan dengan ${parsed.perihal}, bersama ini kami sampaikan permohonan tindak lanjut pada ${proposingUnit}.`,
-              `Demikian disampaikan. Atas perhatian Bapak/Ibu, kami ucapkan terima kasih.`,
-            ],
+      bodyParagraphs,
       eventDetails,
       signerName: signer.fullNameWithTitles,
       signerTitle: signer.position,
@@ -350,22 +417,20 @@ ${letterTypeHint ? `Preferensi Jenis Surat: ${letterTypeHint}` : ''}`;
       rawPrompt: promptText,
       extractedJson: {
         jenisSurat: letterType,
-        kodeKlasifikasi: `${classificationCode} / ${
-          parsed.klasifikasiKeterangan || 'Naskah Dinas RSUD'
-        }`,
+        kodeKlasifikasi: `${classificationCode} / ${classificationDesc}`,
         unitPengusul: proposingUnit,
-        tujuanSurat: parsed.tujuanSurat,
-        perihal: parsed.perihal,
+        tujuanSurat: recipientText,
+        perihal: subjectText,
         urgensi: urgency,
         templateTnd: templateCodeMap[letterType],
-        entitasItem: parsed.entitasItem,
+        entitasItem,
         hariTanggal: eventDetails?.hariTanggal,
         waktu: eventDetails?.waktu,
         tempat: eventDetails?.tempat,
-        generationEngine: 'gemini-4-hydrogen',
+        generationEngine: modelUsed,
       },
       status: 'Draft',
-      complianceScore: JSON.stringify(parsed.bodyParagraphs || []).includes('[Isi')
+      complianceScore: JSON.stringify(bodyParagraphs).includes('[Isi')
         ? 88
         : 100,
       parafFlow: buildSotkParafFlow(
@@ -379,11 +444,11 @@ ${letterTypeHint ? `Preferensi Jenis Surat: ${letterTypeHint}` : ''}`;
           id: `aud-${Date.now()}`,
           draftId,
           draftNumber: '[Draf Awal]',
-          draftSubject: parsed.perihal,
+          draftSubject: subjectText,
           actorName: creatorUser?.name || 'Rizky Pratama, A.Md.Kep.',
           actorNip: creatorUser?.nip || '19940312 202012 1 004',
           actorRole: creatorUser?.shortRoleLabel || 'Staf Pengusul',
-          action: 'Membuat Draf via Gemini AI (gemini-4-hydrogen)',
+          action: `Membuat Draf via Gemini AI (${modelUsed})`,
           fromStatus: '-',
           toStatus: 'Draft',
           note: 'Ekstraksi intent & penyusunan narasi EYD V berhasil dijalankan melalui server.',
@@ -400,10 +465,16 @@ ${letterTypeHint ? `Preferensi Jenis Surat: ${letterTypeHint}` : ''}`;
   } catch (err: unknown) {
     const message =
       err instanceof Error ? err.message : 'Gagal menghubungi layanan Gemini AI.';
-    const statusCode = message.includes('403')
+    const statusCode = /400|API_KEY_INVALID/i.test(message)
+      ? 400
+      : /403|PERMISSION_DENIED/i.test(message)
       ? 403
-      : message.includes('429')
+      : /429|RESOURCE_EXHAUSTED/i.test(message)
       ? 429
+      : /503|UNAVAILABLE/i.test(message)
+      ? 503
+      : /504|DEADLINE_EXCEEDED|timeout|timed out/i.test(message)
+      ? 504
       : 500;
     res.status(statusCode).json({
       code: 'GEMINI_UPSTREAM_ERROR',
@@ -522,7 +593,7 @@ app.post('/api/drafts/:id/transition', (req, res) => {
     actionLabel = 'Tolak Pengajuan Surat';
   } else if (actionType === 'assign_number') {
     const seq = Math.floor(215 + Math.random() * 750);
-    nextLetterNumber = `${draft.classificationCode}/${seq}/RSUD-NJ/XI/2026`;
+    nextLetterNumber = `${draft.classificationCode}/${seq}/RSUD-RTN/XI/2026`;
     nextOfficialAssigned = true;
     nextStatus = 'Selesai / Terbit';
     actionLabel = `Generate Nomor Surat Resmi (${nextLetterNumber}) & Arsip Otomatis`;
@@ -854,7 +925,10 @@ app.post('/api/export/docx', async (req, res) => {
     }
 
     // Body Paragraphs
-    for (let i = 0; i < draft.bodyParagraphs.length; i++) {
+    const safeParagraphs = Array.isArray(draft.bodyParagraphs)
+      ? draft.bodyParagraphs
+      : [];
+    for (let i = 0; i < safeParagraphs.length; i++) {
       children.push(
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
@@ -862,7 +936,7 @@ app.post('/api/export/docx', async (req, res) => {
           indent: { firstLine: convertMillimetersToTwip(10) },
           children: [
             new TextRun({
-              text: draft.bodyParagraphs[i],
+              text: safeParagraphs[i],
               size: 22,
               font: 'Arial',
             }),

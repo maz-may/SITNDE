@@ -159,7 +159,7 @@ export interface ExtractedIntentPayload {
   hariTanggal?: string;
   waktu?: string;
   tempat?: string;
-  generationEngine?: 'gemini-4-hydrogen' | 'local-rule-engine';
+  generationEngine?: 'gemini-4-hydrogen' | 'gemini-3.1-flash-lite' | 'local-rule-engine';
 }
 
 export interface ValidationIssue {

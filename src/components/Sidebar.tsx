@@ -106,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               SITNDE
             </div>
             <div className="truncate text-xs text-slate-300">
-              RSUD Nusantara Jaya
+              RSUD R.T. Notopuro
             </div>
           </div>
         </div>

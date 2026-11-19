@@ -155,7 +155,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoggedIn }) => {
                 Masuk ke Ruang Kerja SITNDE
               </h2>
               <p className="mt-1 text-xs text-slate-600">
-                Masukkan NIP 18 digit yang terdaftar pada SIMRS RSUD Nusantara Jaya beserta kata sandi Anda.
+                Masukkan NIP 18 digit yang terdaftar pada SIMRS RSUD R.T. Notopuro beserta kata sandi Anda.
               </p>
             </div>
 

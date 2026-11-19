@@ -74,9 +74,19 @@ export const RoleProvider: React.FC<{ children: React.ReactNode }> = ({
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nip, password }),
     });
-    const data = await res.json();
+    const rawText = await res.text();
+    let data: Record<string, unknown> = {};
+    try {
+      data = rawText ? (JSON.parse(rawText) as Record<string, unknown>) : {};
+    } catch {
+      throw new Error('Respons server login tidak valid.');
+    }
     if (!res.ok) {
-      throw new Error(data.error || 'NIP atau kata sandi tidak valid.');
+      const msg =
+        typeof data.error === 'string'
+          ? data.error
+          : 'NIP atau kata sandi tidak valid.';
+      throw new Error(msg);
     }
     const matched = data.user as RoleUserProfile;
     setActiveRoleId(matched.roleId);
